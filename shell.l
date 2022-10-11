@@ -60,7 +60,7 @@ void myunputc(int c) {
 }
 
 ">&" {
-  return GREATAND
+  return GREATAND;
 }
 
 ">>" {
