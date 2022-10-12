@@ -70,7 +70,7 @@ command: simple_command
        ;
 
 simple_command:	
-  command_and_args iomodifier_opt NEWLINE {
+  pipe_list io_modifier_list background_opt NEWLINE {
     printf("   Yacc: Execute command\n");
     Shell::_currentCommand.execute();
   }
@@ -132,7 +132,7 @@ background_optional:
   | /*empty*/
   ;
 
-command_line:
+/*command_line:
   pipe_list io_modifier_list background_optional NEWLINE {
     printf("   Yacc: Execute command\n");
     Shell::_currentCommand.execute();
@@ -144,7 +144,7 @@ command_line:
 command_list:
   command_line
   | command_list command_line
-
+*/
 
 %%
 
