@@ -836,7 +836,7 @@ case 6:
 YY_RULE_SETUP
 #line 62 "shell.l"
 {
-  return GREATAND
+  return GREATAND;
 }
 	YY_BREAK
 case 7:
