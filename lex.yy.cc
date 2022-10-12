@@ -372,8 +372,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 		YY_FATAL_ERROR( "token too large, exceeds YYLMAX" ); \
 	yy_flex_strncpy( yytext, (yytext_ptr), yyleng + 1 ); \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 12
+#define YY_END_OF_BUFFER 13
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -381,10 +381,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[17] =
+static const flex_int16_t yy_accept[18] =
     {   0,
-        0,    0,   12,   10,    2,    1,    9,   10,    4,    3,
-       10,    5,    6,    7,    8,    0
+        0,    0,   13,   11,    2,    1,    9,   11,    4,    3,
+       10,   11,    5,    6,    7,    8,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -402,7 +402,7 @@ static const YY_CHAR yy_ec[256] =
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    8,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -419,41 +419,41 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[8] =
+static const YY_CHAR yy_meta[9] =
     {   0,
-        1,    2,    2,    1,    1,    1,    1
+        1,    2,    2,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[18] =
+static const flex_int16_t yy_base[19] =
     {   0,
-        0,    0,   13,    0,   14,   14,    0,    5,    0,    4,
-        0,    0,    0,    6,    0,   14,    8
+        0,    0,   14,    0,   15,   15,    0,    6,    0,    5,
+        0,    0,    0,    0,    7,    0,   15,    9
     } ;
 
-static const flex_int16_t yy_def[18] =
+static const flex_int16_t yy_def[19] =
     {   0,
-       16,    1,   16,   17,   16,   16,   17,   17,   17,   17,
-       17,   17,   17,   17,   17,    0,   16
+       17,    1,   17,   18,   17,   17,   18,   18,   18,   18,
+       18,   18,   18,   18,   18,   18,    0,   17
     } ;
 
-static const flex_int16_t yy_nxt[22] =
+static const flex_int16_t yy_nxt[24] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   13,   11,   15,
-       14,   12,   16,    3,   16,   16,   16,   16,   16,   16,
-       16
+        4,    5,    6,    7,    8,    9,   10,   11,   14,   12,
+       16,   15,   13,   17,    3,   17,   17,   17,   17,   17,
+       17,   17,   17
     } ;
 
-static const flex_int16_t yy_chk[22] =
+static const flex_int16_t yy_chk[24] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,   10,   17,   14,
-       10,    8,    3,   16,   16,   16,   16,   16,   16,   16,
-       16
+        1,    1,    1,    1,    1,    1,    1,    1,   10,   18,
+       15,   10,    8,    3,   17,   17,   17,   17,   17,   17,
+       17,   17,   17
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[12] =
+static const flex_int32_t yy_rule_can_match_eol[13] =
     {   0,
-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,     };
+1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -756,13 +756,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 17 )
+				if ( yy_current_state >= 18 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 14 );
+		while ( yy_base[yy_current_state] != 15 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -862,19 +862,26 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 80 "shell.l"
+#line 78 "shell.l"
+{
+  return PIPE;
+}
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 82 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
 	YY_BREAK
-case 11:
+case 12:
 YY_RULE_SETUP
-#line 85 "shell.l"
+#line 87 "shell.l"
 ECHO;
 	YY_BREAK
-#line 878 "lex.yy.cc"
+#line 885 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1171,7 +1178,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 17 )
+			if ( yy_current_state >= 18 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1199,11 +1206,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 17 )
+		if ( yy_current_state >= 18 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 16);
+	yy_is_jam = (yy_current_state == 17);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1891,4 +1898,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 85 "shell.l"
+#line 87 "shell.l"

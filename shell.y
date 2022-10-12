@@ -97,6 +97,13 @@ argument:
   }
   ;
 
+pipe_list:
+  command_and_args
+  | pipe_list PIPE command_and_args
+  ;
+
+
+
 command_word:
   WORD {
     printf("   Yacc: insert command \"%s\"\n", $1->c_str());
@@ -110,8 +117,34 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
   }
-  | /* can be empty */ 
+  | GREATGREAT WORD
+  | GREATGREATAND Word
+  | LESS WORD
   ;
+
+io_modifier_list:
+  io_modifier_list io_modifier_opt
+  | /*empty*/ 
+  ;
+
+background_optional:
+  AND
+  | /*empty*/
+  ;
+
+command_line:
+  pipe_list io_modifier_list background_optional NEWLINE {
+    printf("   Yacc: Execute command\n");
+    Shell::_currentCommand.execute();
+  }
+  | NEWLINE
+  | error NEWLINE{yyerrok;}
+  ;
+
+command_list:
+  command_line
+  | command_list command _line
+
 
 %%
 
