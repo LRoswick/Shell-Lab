@@ -87,7 +87,7 @@ command_list:
   ;
 
 cmd_and_args:
-  WORD {
+  WORD arg_list{
     Shell::_currentCommand.
     insertSimpleCommand( Command::_currentSimpleCommand );
   }
@@ -98,12 +98,16 @@ arg_list:
   | /* can be empty */
   ;
 
+
+/*
 argument:
   WORD {
     printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand->insertArgument( $1 );\
   }
   ;
+*/
+
 
 pipe_list:
   cmd_and_args
