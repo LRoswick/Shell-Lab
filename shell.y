@@ -87,26 +87,26 @@ command_list:
   ;
 
 cmd_and_args:
-  WORD arg_list{
+  command_word arg_list{
     Shell::_currentCommand.
     insertSimpleCommand( Command::_currentSimpleCommand );
   }
   ;
 
 arg_list:
-  arg_list WORD
+  arg_list arg
   | /* can be empty */
   ;
 
 
-/*
-argument:
+
+arg:
   WORD {
     printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand->insertArgument( $1 );\
   }
   ;
-*/
+
 
 
 pipe_list:
@@ -115,7 +115,7 @@ pipe_list:
   ;
 
 
-/*
+
 command_word:
   WORD {
     printf("   Yacc: insert command \"%s\"\n", $1->c_str());
@@ -123,7 +123,7 @@ command_word:
     Command::_currentSimpleCommand->insertArgument( $1 );
   }
   ;
-*/
+
 io_modifier:
   GREAT WORD {
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
