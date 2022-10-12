@@ -118,7 +118,7 @@ iomodifier_opt:
     Shell::_currentCommand._outFile = $2;
   }
   | GREATGREAT WORD
-  | GREATGREATAND Word
+  | GREATGREATAND WORD
   | LESS WORD
   ;
 
@@ -143,7 +143,7 @@ command_line:
 
 command_list:
   command_line
-  | command_list command _line
+  | command_list command_line
 
 
 %%
