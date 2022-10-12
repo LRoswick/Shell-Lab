@@ -58,9 +58,11 @@ int yylex();
 %%
 
 goal:
-  commands
+  //commands
+  command_list;
   ;
 
+/*
 commands:
   command
   | commands command
@@ -68,8 +70,9 @@ commands:
 
 command: simple_command
        ;
+*/
 
-simple_command:	
+command_line:	
   pipe_list io_modifier_list background_optional NEWLINE {
     printf("   Yacc: Execute command\n");
     Shell::_currentCommand.execute();
@@ -78,15 +81,20 @@ simple_command:
   | error NEWLINE { yyerrok; }
   ;
 
-command_and_args:
-  command_word argument_list {
+command_list:
+  command_line
+  | command_list command_line
+  ;
+
+cmd_and_args:
+  WORD {
     Shell::_currentCommand.
     insertSimpleCommand( Command::_currentSimpleCommand );
   }
   ;
 
-argument_list:
-  argument_list argument
+arg_list:
+  arg_list WORD
   | /* can be empty */
   ;
 
@@ -98,12 +106,12 @@ argument:
   ;
 
 pipe_list:
-  command_and_args
-  | pipe_list PIPE command_and_args
+  cmd_and_args
+  | pipe_list PIPE cmd_and_args
   ;
 
 
-
+/*
 command_word:
   WORD {
     printf("   Yacc: insert command \"%s\"\n", $1->c_str());
@@ -111,19 +119,20 @@ command_word:
     Command::_currentSimpleCommand->insertArgument( $1 );
   }
   ;
-
-iomodifier_opt:
+*/
+io_modifier:
   GREAT WORD {
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
   }
   | GREATGREAT WORD
   | GREATGREATAND WORD
+  | GREATAND WORD
   | LESS WORD
   ;
 
 io_modifier_list:
-  io_modifier_list iomodifier_opt
+  io_modifier_list io_modifier
   | /*empty*/ 
   ;
 
