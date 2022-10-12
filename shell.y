@@ -123,7 +123,7 @@ iomodifier_opt:
   ;
 
 io_modifier_list:
-  io_modifier_list io_modifier_opt
+  io_modifier_list iomodifier_opt
   | /*empty*/ 
   ;
 
