@@ -119,7 +119,7 @@ void Command::execute() {
 
 
     int ret;
-    for (int i = 0; i < _simpleCommands.size(); i++) {
+    for (int i = 0; i < (int) _simpleCommands.size(); i++) {
       ret = fork();
       if (ret == 0) {
         //child
