@@ -548,7 +548,7 @@ static const yytype_uint8 yyrline[] =
 {
        0,    62,    62,    76,    80,    81,    85,    86,    90,    97,
       98,   104,   113,   114,   120,   128,   132,   136,   142,   147,
-     154,   155,   159,   160
+     154,   155,   159,   162
 };
 #endif
 
@@ -1446,8 +1446,16 @@ yyreduce:
 #line 1447 "y.tab.cc"
     break;
 
+  case 22:
+#line 159 "shell.y"
+      {
+    Shell::_currentCommand._background = true;
+  }
+#line 1455 "y.tab.cc"
+    break;
 
-#line 1451 "y.tab.cc"
+
+#line 1459 "y.tab.cc"
 
       default: break;
     }
@@ -1679,7 +1687,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 177 "shell.y"
+#line 179 "shell.y"
 
 
 void

@@ -21,6 +21,13 @@
 
 #include "command.hh"
 #include "shell.hh"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 
 Command::Command() {
@@ -104,7 +111,7 @@ void Command::execute() {
     // Add execution here
     // For every simple command fork a new process
     
-    pid = fork();
+    int pid = fork();
     if (pid == -1) {
       perror("fork");
       return;
