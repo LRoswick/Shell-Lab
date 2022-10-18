@@ -111,10 +111,18 @@ void Command::execute() {
     // Add execution here
     // For every simple command fork a new process
     
-    //int defaultin = dup( 0 );
-    //int defaultout = dup( 1 );
-    //int defaulterr = dup( 2 );
-    
+    int defaultin = dup( 0 );
+    int defaultout = dup( 1 );
+    int defaulterr = dup( 2 );
+    int in;
+    if (_infile) {
+      in = open((char *) _infile, O_RDONLY);
+      if (in < 0) {
+        //handle error
+      }
+    } else {
+      in = dup(defaultin);
+    }
 
 
 
