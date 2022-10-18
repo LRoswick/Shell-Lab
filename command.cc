@@ -126,12 +126,12 @@ void Command::execute() {
         
 
         const char * command = _simpleCommands[i]->_arguments[0]->c_str();
-        int argnum = _simpleCommands[i]->_arguments.size();
-        char * args = new char*[argnum+1];
-        for (int j=0; j<argnum; j++) {
+        int num = _simpleCommands[i]->_arguments.size();
+        char ** args = new char*[num+1];
+        for (int j=0; j<num; j++) {
             args[j] = (char *)_simpleCommands[i]->_arguments[j]->c_str();
         }
-        args[argnum] = NULL;
+        args[num] = NULL;
         execvp(command, args); 
 
 
