@@ -111,12 +111,36 @@ void Command::execute() {
     // Add execution here
     // For every simple command fork a new process
     
-    int pid = fork();
-    if (pid == -1) {
-      perror("fork");
-      return;
-    } else if (pid == 0) {
-      
+    int defaultin = dup( 0 );
+    int defaultout = dup( 1 );
+    int defaulterr = dup( 2 );
+    
+
+
+
+    int ret;
+    for (int i = 0; i < _simpleCommands.size(); i++) {
+      ret = fork();
+      if (ret == 0) {
+        //child
+	execvp(_simpleCommands[i]->args[0], simpleCommands->_args);
+	perror("execvp");
+	exit(1);
+      } else if (ret < 0) {
+        perror("fork");
+	return;
+      }
+      //parent shell continue
+    }
+    if (!background) {
+      //wait for last process
+      waitpid(ret, NULL, 0);
+
+      //close(fdpipe[0]);
+      //close(fdpipe[1]);
+      //close( defaultin );
+      //close( defaultout );
+      //close( defaulterr );
 
     }
 
