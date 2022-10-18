@@ -123,9 +123,21 @@ void Command::execute() {
       ret = fork();
       if (ret == 0) {
         //child
-	
+        
+
+        const char * command = _simpleCommands[i]->_arguments[0]->c_str();
+        int argnum = _simpleCommands[i]->_arguments.size();
+        char ** args = new char*[argnum+1];
+        for (int j=0; j<argnum; j++) {
+            args[j] = (char *)_simpleCommands[i]->_arguments[j]->c_str();
+        }
+        args[argnum] = NULL;
+        execvp(command, args); 
+
+
+
 	//may need to be strings
-	execvp((char * )_simpleCommands[i]->_arguments[0], (char **) _simpleCommands[i]->_arguments);
+	//execvp((char * )_simpleCommands[i]->_arguments[0], (char *) _simpleCommands[i]->_arguments);
 
 	perror("execvp");
 	exit(1);
