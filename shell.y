@@ -156,7 +156,9 @@ io_modifier_list:
   ;
 
 background_optional:
-  AND
+  AND {
+    Shell::_currentCommand._background = true;
+  }
   | /*empty*/
   ;
 

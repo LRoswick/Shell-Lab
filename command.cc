@@ -103,6 +103,19 @@ void Command::execute() {
 
     // Add execution here
     // For every simple command fork a new process
+    
+    pid = fork();
+    if (pid == -1) {
+      perror("fork");
+      return;
+    } else if (pid == 0) {
+      
+
+    }
+
+
+
+
     // Setup i/o redirection
     // and call exec
 
