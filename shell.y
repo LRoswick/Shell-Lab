@@ -132,12 +132,13 @@ io_modifier:
   | GREATGREAT WORD {
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
+    Shell::_currentCommand._append = true;
   }
   | GREATGREATAND WORD {
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
     Shell::_currentCommand._errFile = $2;
-    
+    Shell::_currentCommand._append = true;
   }
   | GREATAND WORD {
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
