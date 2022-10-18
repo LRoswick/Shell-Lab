@@ -21,7 +21,7 @@
 int yyparse(void);
 
 void Shell::prompt() {
-  if (isatty() == 1) {
+  if (isatty(0) == 1) {
     printf("myshell>");
   }
   fflush(stdout);
