@@ -123,7 +123,7 @@ void Command::execute() {
       ret = fork();
       if (ret == 0) {
         //child
-	execvp(_simpleCommands[i]->args[0], simpleCommands->_args);
+	execvp(_simpleCommands[i]->_args[0], _simpleCommands->_args);
 	perror("execvp");
 	exit(1);
       } else if (ret < 0) {
