@@ -26,6 +26,7 @@ struct Command {
   std::string * _outFile;
   std::string * _inFile;
   std::string * _errFile;
+  bool _append;
   bool _background;
 
   Command();

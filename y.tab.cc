@@ -547,8 +547,8 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    62,    62,    76,    80,    81,    85,    86,    90,    97,
-      98,   104,   113,   114,   120,   128,   132,   136,   142,   147,
-     154,   155,   159,   162
+      98,   104,   113,   114,   120,   128,   132,   137,   143,   148,
+     155,   156,   160,   163
 };
 #endif
 
@@ -1412,50 +1412,51 @@ yyreduce:
                     {
     printf("   Yacc: insert output \"%s\"\n", (yyvsp[0].cpp_string)->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
+    Shell::_currentCommand._append = true;
   }
-#line 1417 "y.tab.cc"
+#line 1418 "y.tab.cc"
     break;
 
   case 17:
-#line 136 "shell.y"
+#line 137 "shell.y"
                        {
     printf("   Yacc: insert output \"%s\"\n", (yyvsp[0].cpp_string)->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
-    
+    Shell::_currentCommand._append = true;
   }
-#line 1428 "y.tab.cc"
+#line 1429 "y.tab.cc"
     break;
 
   case 18:
-#line 142 "shell.y"
+#line 143 "shell.y"
                   {
     printf("   Yacc: insert output \"%s\"\n", (yyvsp[0].cpp_string)->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1438 "y.tab.cc"
+#line 1439 "y.tab.cc"
     break;
 
   case 19:
-#line 147 "shell.y"
+#line 148 "shell.y"
               {
     printf("   Yacc: insert input \"%s\"\n", (yyvsp[0].cpp_string)->c_str());
     Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
   }
-#line 1447 "y.tab.cc"
+#line 1448 "y.tab.cc"
     break;
 
   case 22:
-#line 159 "shell.y"
+#line 160 "shell.y"
       {
     Shell::_currentCommand._background = true;
   }
-#line 1455 "y.tab.cc"
+#line 1456 "y.tab.cc"
     break;
 
 
-#line 1459 "y.tab.cc"
+#line 1460 "y.tab.cc"
 
       default: break;
     }
@@ -1687,7 +1688,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 179 "shell.y"
+#line 180 "shell.y"
 
 
 void
