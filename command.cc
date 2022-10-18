@@ -112,10 +112,16 @@ void Command::execute() {
     // For every simple command fork a new process
     
     int defaultin = dup( 0 );
-    //int defaultout = dup( 1 );
-    //int defaulterr = dup( 2 );
+    int defaultout = dup( 1 );
+    int defaulterr = dup( 2 );
     int in;
-    if (_infile) {
+    int out;
+    int err;
+
+
+    //in file
+    if (_inFile) {
+      //might need to make it a string first
       in = open((char *) _inFile, O_RDONLY);
       if (in < 0) {
         //handle error
@@ -123,6 +129,36 @@ void Command::execute() {
     } else {
       in = dup(defaultin);
     }
+    
+    //out file
+    if (_outFile) {
+      if (_append) { 
+        out = open((char *) _outFile, O_CREAT|O_WRONLY|O_APPEND);
+      } else {
+        out = open((char *) _outFile, O_CREAT|O_WRONLY|O_TRUNC);
+      }
+      if (out < 0) {
+        //error 
+      }
+    } else {
+      out = dup(defaultout);
+    }
+  
+    //err file
+    if (_errFile) {
+      if (_append) {
+        out = open((char *) _errFile, O_CREAT|O_WRONLY|O_APPEND);
+      } else {
+        out = open((char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC);
+      }
+      if (err < 0) {
+        //error 
+      }
+    } else {
+      err = dup(defaulterr);
+    }
+
+
 
 
 
