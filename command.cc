@@ -111,9 +111,9 @@ void Command::execute() {
     // Add execution here
     // For every simple command fork a new process
     
-    int defaultin = dup( 0 );
-    int defaultout = dup( 1 );
-    int defaulterr = dup( 2 );
+    //int defaultin = dup( 0 );
+    //int defaultout = dup( 1 );
+    //int defaulterr = dup( 2 );
     
 
 
@@ -135,7 +135,7 @@ void Command::execute() {
       }
       //parent shell continue
     }
-    if (!background) {
+    if (!_background) {
       //wait for last process
       waitpid(ret, NULL, 0);
 
