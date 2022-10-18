@@ -125,7 +125,7 @@ void Command::execute() {
         //child
 	
 	//may need to be strings
-	execvp((char * )_simpleCommands[i]->_arguments[0], _simpleCommands[i]->_arguments);
+	execvp((char * )_simpleCommands[i]->_arguments[0], (char *) _simpleCommands[i]->_arguments);
 
 	perror("execvp");
 	exit(1);
