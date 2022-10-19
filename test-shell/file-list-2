@@ -68,29 +68,3 @@ test_zombie
  €Ýù%V
   ¶ù,V
  _|yU
-
-
-  Output       Input        Error        Background
-  ------------ ------------ ------------ ------------
-  file-list-2  default      default      NO          
-
-
-   Yacc: insert command "ls"
-   Yacc: insert argument "-a"
-   Yacc: insert argument "$(cat"
-   Yacc: insert argument "file-list-2)"
-   Yacc: Execute command
-
-
-              COMMAND TABLE                
-
-  #   Simple Commands
-  --- ----------------------------------------------------------
-  0   "ls" 	"-a" 	"$(cat" 	"file-list-2)" 	
-
-
-  Output       Input        Error        Background
-  ------------ ------------ ------------ ------------
-  default      default      default      NO          
-
-
