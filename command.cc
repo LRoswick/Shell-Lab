@@ -189,7 +189,7 @@ void Command::execute() {
         //child
         
 
-        const char * command = _simpleCommands[i]->_arguments[0];
+        const char * command = _simpleCommands[i]->_arguments[0]->c_str();
 	//char ** args = _simpleCommands[i]->_arguments;
         int num = _simpleCommands[i]->_arguments.size();
         char ** args = new char*[num+1];
