@@ -122,7 +122,7 @@ void Command::execute() {
     char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
 
     //exit
-    if (strcmp(cmd, "exit") {
+    if (strcmp(cmd, "exit")) {
       printf("Good Bye!!\n");
       exit(1);
     }
