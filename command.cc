@@ -168,9 +168,9 @@ void Command::execute() {
 	  //char * err1 = _errFile->c_str(); 
           if (_append) {
   
-            out = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
+            err  = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
           } else {
-            out = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
+            err = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
           }
           if (err < 0) {
             //error 
