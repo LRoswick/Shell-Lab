@@ -143,9 +143,9 @@ void Command::execute() {
         //out file
         if (_outFile) {
           if (_append) {
-            out = open((char *) _outFile->s_str(), O_CREAT|O_WRONLY|O_APPEND);
+            out = open((char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_APPEND);
           } else {
-            out = open((char *) _outFile->s_str(), O_CREAT|O_WRONLY|O_TRUNC);
+            out = open((char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC);
           }
           if (out < 0) {
             //error 
