@@ -157,9 +157,9 @@ void Command::execute() {
         //err file
         if (_errFile) {
           if (_append) {
-            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_APPEND);
+            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_APPEND, 0664);
           } else {
-            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC);
+            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC, 0664);
           }
           if (err < 0) {
             //error 
