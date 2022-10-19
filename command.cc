@@ -176,6 +176,10 @@ void Command::execute() {
 	out = fdpipe[1];
 	in = fdpipe[0];
       }
+      dup2(out, 1);
+      close(out);
+
+
 
       ret = fork();
       if (ret == 0) {
