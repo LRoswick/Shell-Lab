@@ -75,6 +75,7 @@ void Command::clear() {
 }
 
 void Command::print() {
+    return;
     printf("\n\n");
     printf("              COMMAND TABLE                \n");
     printf("\n");
