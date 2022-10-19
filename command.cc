@@ -138,6 +138,26 @@ void Command::execute() {
     } else {
       in = dup(defaultin);
     }
+    
+    //err file
+    if (_errFile) {
+      //char * err1 = _errFile->c_str(); 
+      if (_append) {
+        err  = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
+      } else {
+        err = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
+      }
+      if (err < 0) {
+        //error 
+      }
+    } else {
+          err = dup(defaulterr);
+    }
+
+
+
+
+
 
 
     int ret;
@@ -164,20 +184,20 @@ void Command::execute() {
         }
       
         //err file
-        if (_errFile) {
+        //if (_errFile) {
 	  //char * err1 = _errFile->c_str(); 
-          if (_append) {
+          //if (_append) {
   
-            err  = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
-          } else {
-            err = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
-          }
-          if (err < 0) {
+            //err  = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
+          //} else {
+            //err = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
+          //}
+          //if (err < 0) {
             //error 
-          }
-        } else {
-          err = dup(defaulterr);
-        }
+          //}
+        //} else {
+          //err = dup(defaulterr);
+        //}
         //dup2(err, 2);
         //close(err);	
       } else {
