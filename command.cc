@@ -18,7 +18,7 @@
 #include <cstdlib>
 
 #include <iostream>
-
+#include <string.h>
 #include "command.hh"
 #include "shell.hh"
 #include <stdio.h>
