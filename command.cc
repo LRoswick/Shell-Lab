@@ -126,7 +126,7 @@ void Command::execute() {
     int in;
     int out;
     int err;
-
+    printf("sus\n");
 
     //in file
     if (_inFile) {
@@ -140,7 +140,9 @@ void Command::execute() {
     }
     
     //err file
+    printf("sus\n");
     if (_errFile) {
+      printf("sus\n");
       //char * err1 = _errFile->c_str(); 
       if (_append) {
         err  = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
