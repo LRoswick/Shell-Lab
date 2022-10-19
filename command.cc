@@ -178,8 +178,8 @@ void Command::execute() {
         } else {
           err = dup(defaulterr);
         }
-        dup2(err, 2);
-        close(err);	
+        //dup2(err, 2);
+        //close(err);	
       } else {
         //pipe
 	int fdpipe[2];
@@ -189,6 +189,8 @@ void Command::execute() {
       }
       dup2(out, 1);
       close(out);
+      dup2(err, 2);
+      close(err);  
 
 
 
