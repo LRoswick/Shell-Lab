@@ -142,10 +142,11 @@ void Command::execute() {
       if (i == (int) _simpleCommands.size() - 1) {
         //out file
         if (_outFile) {
+	  const char * out1 = _outFile->c_str();
           if (_append) {
-            out = open((const char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
+            out = open(out1, O_CREAT|O_WRONLY|O_APPEND, 0666);
           } else {
-            out = open((const char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
+            out = open(out1, O_CREAT|O_WRONLY|O_TRUNC, 0666);
           }
           if (out < 0) {
             //error 
@@ -156,10 +157,12 @@ void Command::execute() {
       
         //err file
         if (_errFile) {
+	  const char * err1 = _errFile->c_str(); 
           if (_append) {
-            out = open((const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
+  
+            out = open(err1, O_CREAT|O_WRONLY|O_APPEND, 0666);
           } else {
-            out = open((const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
+            out = open(err1, O_CREAT|O_WRONLY|O_TRUNC, 0666);
           }
           if (err < 0) {
             //error 
