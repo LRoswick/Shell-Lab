@@ -119,7 +119,7 @@ void Command::execute() {
     print();
 
     // Add execution here
-    char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
+    const char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
 
     //exit
     if (strcmp(cmd, "exit")) {
