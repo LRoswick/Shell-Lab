@@ -56,7 +56,7 @@ void Command::clear() {
     // (basically just sets the size to 0)
     _simpleCommands.clear();
     
-    if (&_outFile == &_inFile) {
+    if (_outFile->c_str().compare(_inFile->c_str())) {
       delete _outFile;
       _outFile = NULL;
       _inFile = NULL;
