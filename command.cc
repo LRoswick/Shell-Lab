@@ -55,6 +55,12 @@ void Command::clear() {
     // remove all references to the simple commands we've deallocated
     // (basically just sets the size to 0)
     _simpleCommands.clear();
+    
+    if (_outfile == _inFile) {
+      delete _outFile;
+      _outFile = NULL;
+      _inFile = NULL;
+    }
 
     if ( _outFile ) {
         delete _outFile;
