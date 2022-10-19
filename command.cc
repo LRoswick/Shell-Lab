@@ -215,6 +215,11 @@ void Command::execute() {
       //close(fdpipe[0]);
       //close(fdpipe[1]);
       //may need to set them to the original numbers
+      
+
+      dup2(defaultin, 0);
+      dup2(defaultout, 1);
+      dup2(defaulterr, 2);
       close( defaultin );
       close( defaultout );
       close( defaulterr );
