@@ -149,7 +149,7 @@ io_modifier:
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
     Shell::_currentCommand._inFile = $2;
   }
-  | TWOAND WORD {
+  | TWOGREAT WORD {
     Shell::_currentCommand._errFile = $2;
   }
   ;
