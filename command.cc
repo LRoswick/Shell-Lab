@@ -123,7 +123,7 @@ void Command::execute() {
     //in file
     if (_inFile) {
       //might need to make it a string first
-      in = open((const char *) _inFile, O_RDONLY);
+      in = open((const char *) _inFile->c_str(), O_RDONLY);
       if (in < 0) {
         //handle error
       }
@@ -144,9 +144,9 @@ void Command::execute() {
         if (_outFile) {
 	  //char * out1 = _outFile->c_str();
           if (_append) {
-            out = open( (const char *) _outFile, O_CREAT|O_WRONLY|O_APPEND, 0666);
+            out = open( (const char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
           } else {
-            out = open( (const char *) _outFile, O_CREAT|O_WRONLY|O_TRUNC, 0666);
+            out = open( (const char *) _outFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
           }
           if (out < 0) {
             //error 
@@ -160,9 +160,9 @@ void Command::execute() {
 	  //char * err1 = _errFile->c_str(); 
           if (_append) {
   
-            out = open( (const char *) _errFile, O_CREAT|O_WRONLY|O_APPEND, 0666);
+            out = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_APPEND, 0666);
           } else {
-            out = open( (const char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC, 0666);
+            out = open( (const char *) _errFile->c_str(), O_CREAT|O_WRONLY|O_TRUNC, 0666);
           }
           if (err < 0) {
             //error 
