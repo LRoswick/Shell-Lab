@@ -119,8 +119,20 @@ void Command::execute() {
     print();
 
     // Add execution here
-    // For every simple command fork a new process
-    
+    char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
+
+    //exit
+    if (strcmp(cmd, "exit") {
+      printf("Good Bye!!\n");
+      exit(1);
+    }
+
+    //cd 
+
+
+
+
+     
     int defaultin = dup( 0 );
     int defaultout = dup( 1 );
     int defaulterr = dup( 2 );
