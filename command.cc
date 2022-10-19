@@ -130,41 +130,53 @@ void Command::execute() {
     } else {
       in = dup(defaultin);
     }
-    
-    //out file
-    if (_outFile) {
-      if (_append) { 
-        out = open((char *) _outFile, O_CREAT|O_WRONLY|O_APPEND);
-      } else {
-        out = open((char *) _outFile, O_CREAT|O_WRONLY|O_TRUNC);
-      }
-      if (out < 0) {
-        //error 
-      }
-    } else {
-      out = dup(defaultout);
-    }
-  
-    //err file
-    if (_errFile) {
-      if (_append) {
-        out = open((char *) _errFile, O_CREAT|O_WRONLY|O_APPEND);
-      } else {
-        out = open((char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC);
-      }
-      if (err < 0) {
-        //error 
-      }
-    } else {
-      err = dup(defaulterr);
-    }
-
-
-
 
 
     int ret;
     for (int i = 0; i < (int) _simpleCommands.size(); i++) {
+      
+      dup2(in, 0);
+      close(in);
+      
+      //check if its the last command in the list
+      if (i == (int) _simpleCommands.size() - 1) {
+        //out file
+        if (_outFile) {
+          if (_append) {
+            out = open((char *) _outFile, O_CREAT|O_WRONLY|O_APPEND);
+          } else {
+            out = open((char *) _outFile, O_CREAT|O_WRONLY|O_TRUNC);
+          }
+          if (out < 0) {
+            //error 
+          }
+        } else {
+          out = dup(defaultout);
+        }
+      
+        //err file
+        if (_errFile) {
+          if (_append) {
+            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_APPEND);
+          } else {
+            out = open((char *) _errFile, O_CREAT|O_WRONLY|O_TRUNC);
+          }
+          if (err < 0) {
+            //error 
+          }
+        } else {
+          err = dup(defaulterr);
+        }
+        dup2(err, 2);
+        close(err);	
+      } else {
+        //pipe
+	int fdpipe[2];
+	pipe(fdpipe);
+	out = fdpipe[1];
+	in = fdpipe[0];
+      }
+
       ret = fork();
       if (ret == 0) {
         //child
@@ -195,14 +207,15 @@ void Command::execute() {
     if (!_background) {
       //wait for last process
       waitpid(ret, NULL, 0);
-
+    }
       //close(fdpipe[0]);
       //close(fdpipe[1]);
-      //close( defaultin );
-      //close( defaultout );
-      //close( defaulterr );
+      //may need to set them to the original numbers
+      close( defaultin );
+      close( defaultout );
+      close( defaulterr );
 
-    }
+    
 
 
 
