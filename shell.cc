@@ -33,10 +33,10 @@ void Shell::prompt() {
   fflush(stdout);
 }
 extern "C" void disp(int sig) {
-  printf("\n");
-  Shell::prompt();
-
-
+  if (sig == SIGINT) {
+    printf("\n");
+    Shell::prompt();
+  }
 }
 
 
