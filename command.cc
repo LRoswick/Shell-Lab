@@ -115,10 +115,6 @@ void Command::execute() {
         return;
     }
 
-    // Print contents of Command data structure
-    print();
-
-    // Add execution here
     const char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
 
     //exit
@@ -127,10 +123,25 @@ void Command::execute() {
       exit(1);
     }
 
-    //cd 
+    //cd
+    if (strcmp(cmd, "cd") == 0) {
+      
+
+
+    }
 
 
 
+
+    //setenv
+    if (strcmp(cmd, "setenv") == 0) {
+      const char * A = _simpleCommands[0]->_arguments[1]->c_str();
+      const char * B = _simpleCommands[0]->_arguments[2]->c_str();
+      setenv(A, B, 1);
+      clear();
+      Shell::prompt();
+      return;
+    }
 
      
     int defaultin = dup( 0 );
