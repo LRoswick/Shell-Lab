@@ -150,6 +150,10 @@ void Command::execute() {
       for (size_t i = 0; i < strlen(*environ); i++) {
         printf("%s ", *environ);
       }
+      printf("\n");
+      clear();
+      Shell::prompt();
+      return;
     }
 
     //unsetenv
