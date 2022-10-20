@@ -109,6 +109,7 @@ void Command::print() {
 }
 
 void Command::execute() {
+
     // Don't do anything if there are no simple commands
     if ( _simpleCommands.size() == 0 ) {
         Shell::prompt();
@@ -144,10 +145,10 @@ void Command::execute() {
 
 
 
-    //printenv
+    printenv
     if (strcmp(cmd, "printenv") == 0) {
-      for (int i = 0; i < strlen(&environ); i++) {
-        printf("%s ", &environ[i]);
+      for (int i = 0; i < strlen(environ*); i++) {
+        printf("%s ", environ*);
     }
 
     //unsetenv
