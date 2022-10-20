@@ -278,7 +278,19 @@ void Command::execute() {
       ret = fork();
       if (ret == 0) {
         //child
-        
+        //printenv
+      if (strcmp(cmd, "printenv") == 0) {
+        char ** temp = environ;
+        while (*temp != NULL) {
+          printf("%s\n", *temp);
+          temp++;
+        }
+        exit(0);
+        //clear();
+        //Shell::prompt();
+        //return;
+    }
+  
 
         const char * command = _simpleCommands[i]->_arguments[0]->c_str();
 	//char ** args = _simpleCommands[i]->_arguments;
