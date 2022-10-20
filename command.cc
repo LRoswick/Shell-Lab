@@ -145,7 +145,7 @@ void Command::execute() {
 
 
 
-    printenv
+    //printenv
     if (strcmp(cmd, "printenv") == 0) {
       for (int i = 0; i < strlen(environ*); i++) {
         printf("%s ", environ*);
