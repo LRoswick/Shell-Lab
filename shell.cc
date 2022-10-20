@@ -33,7 +33,9 @@ void Shell::prompt() {
   fflush(stdout);
 }
 extern "C" void disp(int sig) {
-  if (sig == SIGINT) {
+  
+  (void) sig;	
+  if (true) {
     printf("\n");
     Shell::prompt();
   }
