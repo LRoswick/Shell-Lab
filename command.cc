@@ -132,7 +132,7 @@ void Command::execute() {
 	if (stat(dir, &st) == 0) {
           chdir(dir);
 	} else {
-	  fprintf(sterr, "cd: can't cd to %s\n", dir);
+	  fprintf(stderr, "cd: can't cd to %s\n", dir);
 	}
       }
       clear();
