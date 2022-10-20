@@ -129,7 +129,7 @@ void Command::execute() {
         chdir(getenv("HOME"));
       } else {
         const char * dir = _simpleCommands[0]->_arguments[1]->c_str();
-	if (stat(dir, &st) == 0) {
+	if (stat(dir, getenv("HOME") == 0) {
           chdir(dir);
 	} else {
 	  fprintf(stderr, "cd: can't cd to %s\n", dir);
