@@ -128,7 +128,12 @@ void Command::execute() {
       if (_simpleCommands[0]->_arguments.size() == 1) {
         chdir(getenv("HOME"));
       } else {
-        chdir(_simpleCommands[0]->_arguments[1]->c_str());
+        const char * dir = _simpleCommands[0]->_arguments[1]->c_str()
+	if (stat(dir, &st) == 0) {
+          chdir(dir);
+	} else {
+	  fprintf(sterr, "cd: can't cd to %s\n", dir);
+	}
       }
       clear();
       Shell::prompt();
