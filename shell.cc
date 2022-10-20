@@ -32,10 +32,32 @@ void Shell::prompt() {
   }
   fflush(stdout);
 }
+extern "C" void disp(int sig) {
+  Shell::prompt()
+
+
+}
+
+
 
 int main() {
   Shell::prompt();
   yyparse();
+  struct sigaction sa;
+  sa.sa_handler = disp;
+  sigemptyset(&sa.sa_mask);
+  sa.sa_flags = sa_redirect;
+
+    if(sigaction(SIGINT, &sa, NULL)){
+        perror("sigaction");
+        exit(2);
+    }
+
+
+
+
+
+
 }
 
 Command Shell::_currentCommand;
