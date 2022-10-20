@@ -144,8 +144,8 @@ void Command::execute() {
     }
     //putenv
     if (strcmp(cmd, "putenv") == 0) {
-      char * A = _simpleCommands[0]->_arguments[1]->c_str();
-      putenv(A);
+      const char * A = _simpleCommands[0]->_arguments[1]->c_str();
+      putenv((char * ) A);
     }
 
 
