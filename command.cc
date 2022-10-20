@@ -125,13 +125,31 @@ void Command::execute() {
 
     //cd
     if (strcmp(cmd, "cd") == 0) {
-      
-
-
+      if (_simpleCommands[0]->_arguments.size() == 1) {
+        chdir(getenv("HOME"));
+      } else {
+        chdir(_simpleCommands[0]->_arguments[1]->c_str();
+      }
+      clear();
+      Shell::prompt();
+      return;
     }
 
 
 
+    //printenv
+    if (strcmp(cmd, "printenv") == 0) {
+      
+    }
+
+    //unsetenv
+    if (strcmp(cmd, "unsetenv") == 0) {
+      const char * A = _simpleCommands[0]->_arguments[1]->c_str();
+      unsetenv(A);
+      clear();
+      Shell::prompt();
+      return;
+    }
 
     //setenv
     if (strcmp(cmd, "setenv") == 0) {
