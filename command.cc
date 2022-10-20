@@ -128,7 +128,7 @@ void Command::execute() {
       if (_simpleCommands[0]->_arguments.size() == 1) {
         chdir(getenv("HOME"));
       } else {
-        chdir(_simpleCommands[0]->_arguments[1]->c_str();
+        chdir(_simpleCommands[0]->_arguments[1]->c_str());
       }
       clear();
       Shell::prompt();
