@@ -33,7 +33,8 @@ void Shell::prompt() {
   fflush(stdout);
 }
 extern "C" void disp(int sig) {
-  Shell::prompt()
+  printf("\n");
+  Shell::prompt();
 
 
 }
@@ -46,7 +47,7 @@ int main() {
   struct sigaction sa;
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
-  sa.sa_flags = sa_redirect;
+  sa.sa_flags = SA_RESTART;
 
     if(sigaction(SIGINT, &sa, NULL)){
         perror("sigaction");
