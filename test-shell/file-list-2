@@ -18,8 +18,8 @@ files
  €~núU
   !åNV
  O¸dU
-out
 out2
+outfile
 PGğV
 PO¸dU
 P¯‡ñtU
@@ -31,7 +31,6 @@ README
 shell-in
 shell-out
 sh-in
-sh-out
 testall
 testall.out
 test_append_output

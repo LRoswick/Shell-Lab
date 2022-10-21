@@ -279,7 +279,7 @@ void Command::execute() {
       if (ret == 0) {
         //child
         //printenv
-      const char * cmd1 = _simpleCommands[0]->_arguments[0]->c_str();
+      const char * cmd1 = _simpleCommands[i]->_arguments[0]->c_str();
       if (strcmp(cmd1, "printenv") == 0) {
         char ** temp = environ;
         while (*temp != NULL) {
