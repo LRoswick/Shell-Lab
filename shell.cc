@@ -36,7 +36,7 @@ extern "C" void disp(int sig) {
   
   (void) sig;	
   if (true) {
-    Shell::currentCommand.clear();
+    Shell::_currentCommand.clear();
     printf("\n");
     Shell::prompt();
   }
