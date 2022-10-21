@@ -923,7 +923,7 @@ YY_RULE_SETUP
 
 
   //write to pin[1]
-  write(pin[1], (char *) str, str.size());
+  write(pin[1], str->c_str(), str.size());
   
 
 

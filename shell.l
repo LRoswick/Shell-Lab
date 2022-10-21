@@ -106,8 +106,8 @@ void myunputc(int c) {
 
 
   //write to pin[1]
-  write(pin[1], str->c_str(), str.size());
-  
+  write(pin[1], str.c_str(), str.size());
+  close(pin[1]);  
 
 
 
@@ -121,10 +121,14 @@ void myunputc(int c) {
     perror("execvp");
     exit(1);
   }
-  
+  char buffer[1025];
   //read from pout[0]
-    
+  string = read(pout[0], buffer, 1024);  
+   
 
+
+
+  close(pout[0]);
   
 
   //insert back into lex
