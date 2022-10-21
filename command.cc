@@ -150,17 +150,17 @@ void Command::execute() {
 
 
     //printenv
-    if (strcmp(cmd, "printenv") == 0) {
-      char ** temp = environ;	    
-      while (*temp != NULL) {
-        printf("%s\n", *temp);
-	temp++;
-      }
+    //if (strcmp(cmd, "printenv") == 0) {
+      //char ** temp = environ;	    
+      //while (*temp != NULL) {
+        //printf("%s\n", *temp);
+	//temp++;
+      //}
       //exit(0);
-      clear();
-      Shell::prompt();
-      return;
-    }
+      //clear();
+      //Shell::prompt();
+      //return;
+    //}
 
     //unsetenv
     if (strcmp(cmd, "unsetenv") == 0) {
