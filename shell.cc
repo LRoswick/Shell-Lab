@@ -63,7 +63,7 @@ int main() {
   //} else if (sigaction(SIGCHILD, &sa, NULL)) {
     //perror("sigaction");
     //exit(2);
-  //}
+  }
   
 
 
