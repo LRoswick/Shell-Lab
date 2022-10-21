@@ -106,7 +106,7 @@ void myunputc(int c) {
 
 
   //write to pin[1]
-  printf("%s", str.c_str());
+  fprintf(stderr, "%s", str.c_str());
   write(pin[1], str.c_str(), str.size());
   close(pin[1]);  
 
