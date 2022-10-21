@@ -53,7 +53,7 @@ extern "C" void disp(int sig) {
 
 int main() {
   Shell::prompt();
-  yyparse();
+  //yyparse();
 
   struct sigaction sa;
   sa.sa_handler = disp;
