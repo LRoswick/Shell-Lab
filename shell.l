@@ -106,6 +106,7 @@ void myunputc(int c) {
 
 
   //write to pin[1]
+  printf("%s", str.c_str());
   write(pin[1], str.c_str(), str.size());
   close(pin[1]);  
 
@@ -116,6 +117,7 @@ void myunputc(int c) {
     char ** command = new char*[2]; 
     command[0] = (char *)"/proc/self/exe";
     command[1] = NULL;
+
     execvp(command[0], command);
 
     perror("execvp");
