@@ -24,6 +24,9 @@
 #include <fcntl.h>
 #include "shell.hh"
 #include <signal.h>
+#include <string.h>
+
+
 int yyparse(void);
 
 void Shell::prompt() {
