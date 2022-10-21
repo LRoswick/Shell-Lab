@@ -110,8 +110,6 @@ void myunputc(int c) {
   write(pin[1], str.c_str(), str.size());
   close(pin[1]);  
 
-
-
   int ret = fork();
   if (ret == 0) {
     char ** command = new char*[2]; 
@@ -126,7 +124,7 @@ void myunputc(int c) {
   char buffer[1025];
   //read from pout[0]
   int string = read(pout[0], buffer, 1024);  
-  for (int i = string -12; i >= 0; i--) {
+  for (int i = string -12; i >= 0; --i) {
     if (buffer[i] == '\n') {
       myunputc('\t');
     } else {

@@ -947,7 +947,7 @@ YY_RULE_SETUP
     if (buffer[i] == '\n') {
       myunputc('\t');
     } else {
-    myunputc(buffer[i]);
+      myunputc(buffer[i]);
     }    
   }
   
