@@ -102,8 +102,8 @@ void myunputc(int c) {
 
   int ret = fork();
   if (ret == 0) {
-    std::string command [2] = { "/proc/self/exe", NULL};
-    execvp((const char *) command[0], command);
+    const char * command[2] = { "/proc/self/exe", NULL};
+    execvp(command[0], command);
   }
   
 

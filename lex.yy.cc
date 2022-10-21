@@ -912,7 +912,7 @@ YY_RULE_SETUP
   }
 
 
-  int pin[2]; pout[2];
+  int pin[2], pout[2];
   pipe(pin); pipe(pout);
   
 
