@@ -79,6 +79,14 @@ void myunputc(int c) {
   return PIPE;
 }
 
+\"[^\n\"]*\" {
+  std::string str = std::string(yytext);
+  str = str.substr(1, str.size()-2);
+  yylval.cpp_string = new std::string(str);
+  return WORD;
+}
+
+
 [^ \t\n][^ \t\n]*  {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
