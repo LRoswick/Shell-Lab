@@ -95,7 +95,7 @@ void myunputc(int c) {
   }
 
 
-  int pin[2]; pout[2];
+  int pin[2], pout[2];
   pipe(pin); pipe(pout);
   
 
