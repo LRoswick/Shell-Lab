@@ -927,8 +927,6 @@ YY_RULE_SETUP
   write(pin[1], str.c_str(), str.size());
   close(pin[1]);  
 
-
-
   int ret = fork();
   if (ret == 0) {
     char ** command = new char*[2]; 
@@ -943,7 +941,7 @@ YY_RULE_SETUP
   char buffer[1025];
   //read from pout[0]
   int string = read(pout[0], buffer, 1024);  
-  for (int i = string -12; i >= 0; i--) {
+  for (int i = string -12; i >= 0; --i) {
     if (buffer[i] == '\n') {
       myunputc('\t');
     } else {
@@ -962,7 +960,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 147 "shell.l"
+#line 145 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -971,10 +969,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 152 "shell.l"
+#line 150 "shell.l"
 ECHO;
 	YY_BREAK
-#line 978 "lex.yy.cc"
+#line 976 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1991,4 +1989,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 152 "shell.l"
+#line 150 "shell.l"
