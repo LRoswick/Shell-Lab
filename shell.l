@@ -86,6 +86,31 @@ void myunputc(int c) {
   return WORD;
 }
 
+\`[^\n\`]*\`|\$\([^\n]*\) {
+  std::string str = std::string(yytext);
+  if (str.at(0) == '$') {
+    str = substr(2, str.size()-2);
+  } else {
+    str = substr(1, str.size()-2);
+  }
+
+
+  int pin[2]; pout[2];
+  pipe(pin); pipe(pout);
+  
+
+
+  int ret = fork();
+  if (ret == 0) {
+    std::string command [2] = { "/proc/self/exe", NULL};
+    execvp(command[0], command);
+  }
+  
+
+
+
+}
+
 
 [^ \t\n][^ \t\n]*  {
   /* Assume that file names have only alpha chars */
