@@ -52,9 +52,6 @@ extern "C" void disp(int sig) {
 
 
 int main() {
-  Shell::prompt();
-  //yyparse();
-
   struct sigaction sa;
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
@@ -68,7 +65,8 @@ int main() {
     //exit(2);
   }
   
-
+  Shell::prompt();
+  yyparse();
 
 
 
