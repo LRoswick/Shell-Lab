@@ -42,7 +42,7 @@ extern "C" void disp(int sig) {
   }
 
 
-  if (sig == SIGCHILD) {
+  if (sig == SIGCHLD) {
   }
 }
 
