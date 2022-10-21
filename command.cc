@@ -282,7 +282,7 @@ void Command::execute() {
       if (strcmp(cmd, "printenv") == 0) {
         char ** temp = environ;
         while (*temp != NULL) {
-          fprintf(1, "%s\n", *temp);
+          dprintf(1, "%s\n", *temp);
           temp++;
         }
         exit(0);
