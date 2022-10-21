@@ -156,10 +156,10 @@ void Command::execute() {
         printf("%s\n", *temp);
 	temp++;
       }
-      exit(0);
-      //clear();
-      //Shell::prompt();
-      //return;
+      //exit(0);
+      clear();
+      Shell::prompt();
+      return;
     }
 
     //unsetenv
