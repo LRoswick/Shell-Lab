@@ -103,7 +103,7 @@ void myunputc(int c) {
   int ret = fork();
   if (ret == 0) {
     char ** command = new char*[2]; 
-    command[0] = (const char *)"/proc/self/exe";
+    command[0] = (char *)"/proc/self/exe";
     command[1] = NULL;
     execvp(command[0], command);
   }
