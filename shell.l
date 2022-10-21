@@ -99,6 +99,11 @@ void myunputc(int c) {
   pipe(pin); pipe(pout);
 
   
+  int tempin, tempout;
+  tempin = dup(0);
+  tempout = dup(1);
+
+
   dup2(pin[0], 0);
   dup2(pout[1], 1);
   close(pin[0]);
@@ -122,6 +127,12 @@ void myunputc(int c) {
     exit(1);
   }
   waitpid(ret, NULL, 0);
+
+  dup2(tempin, 0);
+  dup2(tempout, 1);
+  close(tempin);
+  close(tempout);;
+ 
   char buffer[1025];
   //read from pout[0]
   //printf("sus");
