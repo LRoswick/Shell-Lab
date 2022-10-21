@@ -34,11 +34,15 @@ void Shell::prompt() {
 }
 extern "C" void disp(int sig) {
   
-  (void) sig;	
-  if (true) {
+  	
+  if (sig == SIGINT) {
     Shell::_currentCommand.clear();
     printf("\n");
     Shell::prompt();
+  }
+
+
+  if (sig == SIGCHILD) {
   }
 }
 
@@ -56,7 +60,10 @@ int main() {
   if(sigaction(SIGINT, &sa, NULL)){
     perror("sigaction");
     exit(2);
-  }
+  //} else if (sigaction(SIGCHILD, &sa, NULL)) {
+    //perror("sigaction");
+    //exit(2);
+  //}
   
 
 
