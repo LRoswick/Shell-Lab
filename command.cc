@@ -279,7 +279,7 @@ void Command::execute() {
       if (ret == 0) {
         //child
         //printenv
-      if (strcmp(simpleCommand[i]->arguments[0]->c_str(), "printenv") == 0) {
+      if (strcmp(SimpleCommand[i]->arguments[0]->c_str(), "printenv") == 0) {
         char ** temp = environ;
         while (*temp != NULL) {
           dprintf(1, "%s\n", *temp);
