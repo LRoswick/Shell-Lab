@@ -910,11 +910,22 @@ YY_RULE_SETUP
   } else {
     str = str.substr(1, str.size()-2);
   }
-
+  str = str + "\n" + "exit\n";
 
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
+
   
+  dup2(pin[0], 0);
+  dup2(pout[1], 1);
+  close(pin[0]);
+  close(pout[1]);
+
+
+  //write to pin[1]
+  write(pin[1], (char *) str, str.size());
+  
+
 
 
   int ret = fork();
@@ -923,16 +934,24 @@ YY_RULE_SETUP
     command[0] = (char *)"/proc/self/exe";
     command[1] = NULL;
     execvp(command[0], command);
+
+    perror("execvp");
+    exit(1);
   }
   
+  //read from pout[0]
+    
 
+  
+
+  //insert back into lex
 
 
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 117 "shell.l"
+#line 136 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -941,10 +960,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 122 "shell.l"
+#line 141 "shell.l"
 ECHO;
 	YY_BREAK
-#line 948 "lex.yy.cc"
+#line 967 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1961,4 +1980,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 122 "shell.l"
+#line 141 "shell.l"
