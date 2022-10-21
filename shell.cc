@@ -36,6 +36,7 @@ extern "C" void disp(int sig) {
   
   (void) sig;	
   if (true) {
+    Shell::currentCommand.clear();
     printf("\n");
     Shell::prompt();
   }
@@ -46,16 +47,17 @@ extern "C" void disp(int sig) {
 int main() {
   Shell::prompt();
   yyparse();
+
   struct sigaction sa;
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
   sa.sa_flags = SA_RESTART;
 
-    if(sigaction(SIGINT, &sa, NULL)){
-        perror("sigaction");
-        exit(2);
-    }
-
+  if(sigaction(SIGINT, &sa, NULL)){
+    perror("sigaction");
+    exit(2);
+  }
+  
 
 
 
