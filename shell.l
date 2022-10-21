@@ -123,7 +123,7 @@ void myunputc(int c) {
   }
   char buffer[1025];
   //read from pout[0]
-  string = read(pout[0], buffer, 1024);  
+  char * string = read(pout[0], buffer, 1024);  
    
 
 

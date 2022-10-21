@@ -923,8 +923,8 @@ YY_RULE_SETUP
 
 
   //write to pin[1]
-  write(pin[1], str->c_str(), str.size());
-  
+  write(pin[1], str.c_str(), str.size());
+  close(pin[1]);  
 
 
 
@@ -938,10 +938,14 @@ YY_RULE_SETUP
     perror("execvp");
     exit(1);
   }
-  
+  char buffer[1025];
   //read from pout[0]
-    
+  string = read(pout[0], buffer, 1024);  
+   
 
+
+
+  close(pout[0]);
   
 
   //insert back into lex
@@ -951,7 +955,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 136 "shell.l"
+#line 140 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -960,10 +964,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 141 "shell.l"
+#line 145 "shell.l"
 ECHO;
 	YY_BREAK
-#line 967 "lex.yy.cc"
+#line 971 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1980,4 +1984,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 141 "shell.l"
+#line 145 "shell.l"
