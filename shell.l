@@ -93,11 +93,22 @@ void myunputc(int c) {
   } else {
     str = str.substr(1, str.size()-2);
   }
-
+  str = str + "\n" + "exit\n";
 
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
+
   
+  dup2(pin[0], 0);
+  dup2(pout[1], 1);
+  close(pin[0]);
+  close(pout[1]);
+
+
+  //write to pin[1]
+  write(pin[1], (char *) str, str.size());
+  
+
 
 
   int ret = fork();
@@ -106,9 +117,17 @@ void myunputc(int c) {
     command[0] = (char *)"/proc/self/exe";
     command[1] = NULL;
     execvp(command[0], command);
+
+    perror("execvp");
+    exit(1);
   }
   
+  //read from pout[0]
+    
 
+  
+
+  //insert back into lex
 
 
 }
