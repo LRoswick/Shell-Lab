@@ -121,6 +121,7 @@ void myunputc(int c) {
     perror("execvp");
     exit(1);
   }
+  waitpid(ret, NULL, 0);
   char buffer[1025];
   //read from pout[0]
   //printf("sus");
