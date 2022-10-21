@@ -940,10 +940,10 @@ YY_RULE_SETUP
   }
   char buffer[1025];
   //read from pout[0]
-  printf("sus");
+  //printf("sus");
   int string = read(pout[0], buffer, 1024);  
   for (int i = string -12; i >= 0; i--) {
-    printf("%d", buffer[i]);
+    //printf("%d", buffer[i]);
     if (buffer[i] == '\n') {
       myunputc('\t');
     } else {
