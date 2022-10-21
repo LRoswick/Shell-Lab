@@ -23,7 +23,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "shell.hh"
-
+#include <signal.h>
 int yyparse(void);
 
 void Shell::prompt() {
