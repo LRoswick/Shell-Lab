@@ -1006,7 +1006,7 @@ YY_RULE_SETUP
     //home directory
     getenv("HOME");
   } else {
-    str = str.substring(1, str.size()-1);
+    str = str.substr(1, str.size()-1);
     getenv(str);
   } 
 
