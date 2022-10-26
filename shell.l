@@ -79,6 +79,20 @@ void myunputc(int c) {
   return PIPE;
 }
 
+~[^ \n\t]* {
+  std::string str = std::string(yytext);
+  if (str.size() == 1) {
+    //home directory
+    getenv("HOME");
+  } else {
+    str = str.substring(1, str.size()-1);
+    getenv(str);
+  } 
+
+
+
+}
+
 \"[^\n\"]*\" {
   std::string str = std::string(yytext);
   str = str.substr(1, str.size()-2);
@@ -88,10 +102,10 @@ void myunputc(int c) {
 
 [^ \\\t\n]*(\\[^nt])((\\[^nt])|[^ \\\t\n])* {
   std::string str = std::string(yytext);
-  std::size_t found = str.find('\\');
-  while(found!=-1) {
-    str = str.substr(0,found) + str.substr(found+1,std::string::npos);
-    found = str.find('\\', found+1);
+  std::size_t index = str.find('\\');
+  while(index!=-1) {
+    str = str.substr(0,index) + str.substr(index+1,std::string::npos);
+    index = str.find('\\', index+1);
   }
   yylval.cpp_string = new std::string(str);
   return WORD;
