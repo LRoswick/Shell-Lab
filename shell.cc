@@ -27,6 +27,10 @@
 #include <string.h>
 #include <limits.h>
 
+
+std::vector<int> Shell::_bgPIDs;
+
+
 int yyparse(void);
 
 void Shell::prompt() {
@@ -86,4 +90,4 @@ int main() {
 }
 
 Command Shell::_currentCommand;
-std::vector<int> Shell::_bgPIDs;
+//std::vector<int> Shell::_bgPIDs;
