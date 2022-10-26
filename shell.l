@@ -27,6 +27,39 @@
 #include <cstring>
 #include "y.tab.hh"
 #include <sys/wait.h>
+
+#include <string.h>
+#include "y.tab.h"
+
+extern “C” char * read_line();
+
+int mygetc(FILE * f) {
+  static char *p;
+  char ch;
+
+     if (!isatty(0)) {
+  // stdin is not a tty. Call real getc
+    return getc(f);
+  }
+
+  // stdin is a tty. Call our read_line.
+  if (p==NULL || *p == 0) {
+    char * s = read_line();
+    p = s;
+  }
+
+  ch = *p;
+  p++;
+
+  return ch;
+}
+
+#undef getc
+#define getc(f) mygetc(f)
+
+
+
+
 static  void yyunput (int c,char *buf_ptr  );
 
 void myunputc(int c) {
@@ -88,9 +121,6 @@ void myunputc(int c) {
     str = str.substr(1, str.size()-1);
     printf("%s", getenv(str.c_str()));
   } 
-
-
-
 }
 
 \"[^\n\"]*\" {
