@@ -320,6 +320,10 @@ void Command::execute() {
     if (!_background) {
       //wait for last process
       waitpid(ret, NULL, 0);
+    } else {
+      std::string s = std::to_string(ret);
+      Shell::_bgPIDs.push_back(ret);
+
     }
       //close(fdpipe[0]);
       //close(fdpipe[1]);

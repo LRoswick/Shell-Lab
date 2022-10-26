@@ -43,10 +43,19 @@ extern "C" void disp(int sig) {
     printf("\n");
     Shell::prompt();
   }
-
-
+  
   if (sig == SIGCHLD) {
+    pid_t pid = waitpid(-1, NULL, WNOHANG);
+    for (unsigned i=0; i<Shell::_bgPIDs.size(); i++) {
+      if (pid == Shell::_bgPIDs[i]) {
+        printf("[%d] exited\n", pid);
+        Shell::_bgPIDs.erase(Shell::_bgPIDs.begin()+i);
+        break;
+      }               
+    }
   }
+
+
 }
 
 
@@ -74,3 +83,4 @@ int main() {
 }
 
 Command Shell::_currentCommand;
+std::vector<int> Shell::_bgPIDs;
