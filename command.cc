@@ -260,7 +260,10 @@ void Command::execute() {
           //err = dup(defaulterr);
         //}
         //dup2(err, 2);
-        //close(err);	
+        //close(err);
+	int n = _simpleCommands[i]->_arguments.size();
+        char * c = strdup(_simpleCommands[i]->_arguments[n-1]->c_str());
+        setenv("_", c, 1);	
       } else {
         //pipe
 	int fdpipe[2];
@@ -319,9 +322,19 @@ void Command::execute() {
     }
     if (!_background) {
       //wait for last process
-      waitpid(ret, NULL, 0);
+      int status;
+      waitpid(ret, &status, 0);
+      std::string s = std::to_string(WEXITSTATUS(status));
+      setenv("?", s.c_str(), 1);
+      char * pError = getenv("ON_ERROR");
+      if (pError != NULL && WEXITSTATUS(status) != 0) printf("%s\n", pError);
+
+
+      	     
+      //waitpid(ret, NULL, 0);
     } else {
       std::string s = std::to_string(ret);
+      setenv("!", s.c_str(), 1);
       Shell::_bgPIDs.push_back(ret);
 
     }
