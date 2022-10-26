@@ -1699,6 +1699,13 @@ yyreturn:
 #line 183 "shell.y"
 
 
+void expandWildcardsIfNecessary(char * arg) {
+
+}
+
+
+
+
 void
 yyerror(const char * s)
 {
