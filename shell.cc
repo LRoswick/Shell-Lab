@@ -25,7 +25,7 @@
 #include "shell.hh"
 #include <signal.h>
 #include <string.h>
-
+#include <limits.h>
 
 int yyparse(void);
 
@@ -69,10 +69,13 @@ int main() {
   if(sigaction(SIGINT, &sa, NULL)){
     perror("sigaction");
     exit(2);
-  //} else if (sigaction(SIGCHILD, &sa, NULL)) {
-    //perror("sigaction");
-    //exit(2);
   }
+  
+  if (sigaction(SIGCHILD, &sa, NULL)) {
+    perror("sigaction");
+    exit(2);
+  }
+
   
   Shell::prompt();
   yyparse();
