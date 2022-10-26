@@ -83,10 +83,10 @@ void myunputc(int c) {
   std::string str = std::string(yytext);
   if (str.size() == 1) {
     //home directory
-    getenv("HOME");
+    printf(getenv("HOME"));
   } else {
     str = str.substr(1, str.size()-1);
-    getenv(str.c_str());
+    printf(getenv(str.c_str()));
   } 
 
 

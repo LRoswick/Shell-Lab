@@ -1007,7 +1007,7 @@ YY_RULE_SETUP
     getenv("HOME");
   } else {
     str = str.substr(1, str.size()-1);
-    getenv(str);
+    getenv(str.c_str());
   } 
 
 
