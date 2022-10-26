@@ -22,6 +22,7 @@
 struct Shell {
 
   static void prompt();
+  static std::vector<int> _bgPIDs;
 
   static Command _currentCommand;
 };
