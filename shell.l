@@ -86,6 +86,20 @@ void myunputc(int c) {
   return WORD;
 }
 
+[^ \\\t\n]*(\\[^nt])((\\[^nt])|[^ \\\t\n])* {
+  std::string str = std::string(yytext);
+  std::size_t found = str.find('\\');
+  while(found!=-1) {
+    str = str.substr(0,found) + str.substr(found+1,std::string::npos);
+    found = str.find('\\', found+1);
+  }
+  yylval.cpp_string = new std::string(str);
+  return WORD;
+}
+
+
+
+
 \`[^\n\`]*\`|\$\([^\n]*\) {
   std::string str = std::string(yytext);
   if (str.at(0) == '$') {
