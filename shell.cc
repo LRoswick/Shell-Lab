@@ -71,7 +71,7 @@ int main() {
     exit(2);
   }
   
-  if (sigaction(SIGCHILD, &sa, NULL)) {
+  if (sigaction(SIGCHLD, &sa, NULL)) {
     perror("sigaction");
     exit(2);
   }
