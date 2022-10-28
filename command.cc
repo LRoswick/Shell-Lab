@@ -331,9 +331,9 @@ void Command::execute() {
       	     
       //waitpid(ret, NULL, 0);
     } else {
-      std::string s = std::to_string(ret);
+      //std::string s = std::to_string(ret);
       setenv("!", s.c_str(), 1);
-      Shell::_bgPIDs.push_back(ret);
+      //Shell::_bgPIDs.push_back(ret);
 
     }
       //close(fdpipe[0]);
