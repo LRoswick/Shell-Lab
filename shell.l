@@ -111,8 +111,8 @@ void myunputc(int c) {
   return PIPE;
 }
 
-source [^ \t\n][^ \t\n]* {
-
+source {
+//[^ \t\n][^ \t\n]*
 }
 
 
