@@ -1003,7 +1003,7 @@ YY_RULE_SETUP
 {
 FILE * yyin = fopen( yytext, "r" );
 if ( !yyin ) {
-  error();
+ perror();
 }
 
   yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));

@@ -117,7 +117,7 @@ source BEGIN(src);
 <src>[^ \t\n]+ {
 FILE * yyin = fopen( yytext, "r" );
 if ( !yyin ) {
- perror();
+ perror("fopen");
 }
 
   yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
