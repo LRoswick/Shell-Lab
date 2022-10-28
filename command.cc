@@ -326,8 +326,6 @@ void Command::execute() {
       waitpid(ret, &status, 0);
       std::string s = std::to_string(WEXITSTATUS(status));
       setenv("?", s.c_str(), 1);
-      char * pError = getenv("ON_ERROR");
-      if (pError != NULL && WEXITSTATUS(status) != 0) printf("%s\n", pError);
 
 
       	     

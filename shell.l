@@ -112,11 +112,17 @@ void myunputc(int c) {
   return PIPE;
 }
 
+source [^ \t\n][^ \t\n]* {
+
+}
+
+
 ~[^ \n\t]* {
   std::string str = std::string(yytext);
   if (str.size() == 1) {
     //home directory
-    printf("%s", getenv("HOME"));
+    //std::string = 
+    //printf("%s", getenv("HOME"));
   } else {
     str = str.substr(1, str.size()-1);
     printf("%s", getenv(str.c_str()));
