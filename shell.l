@@ -29,7 +29,6 @@
 #include <sys/wait.h>
 
 #include <string.h>
-#include "y.tab.h"
 
 extern “C” char * read_line();
 
