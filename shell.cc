@@ -50,7 +50,7 @@ extern "C" void disp(int sig) {
   
   if (sig == SIGCHLD) {
     pid_t pid = waitpid(-1, NULL, WNOHANG);
-    while (pid > 0) {
+    while (pid != 0) {
       printf("[%d] exited\n", pid);
       pid = waitpid(-1, NULL, WNOHANG);
     } 
