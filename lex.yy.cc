@@ -989,8 +989,8 @@ YY_RULE_SETUP
 case 11:
 YY_RULE_SETUP
 #line 114 "shell.l"
-[^ \t\n][^ \t\n]* {
-
+{
+//[^ \t\n][^ \t\n]*
 }
 	YY_BREAK
 case 12:
