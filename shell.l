@@ -111,10 +111,25 @@ void myunputc(int c) {
   return PIPE;
 }
 
-"source [^ \t\n][^ \t\n]*" {
-  
+source BEGIN(src);
 
+<src>[ \t]*
+<src>[^ \t\n]+ {
+FILE * yyin = fopen( yytext, "r" );
+if ( !yyin ) {
+  error();
+}
 
+  yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
+  BEGIN(INITIAL);
+}
+
+<<EOF>> {
+  yypop_buffer_state();
+
+  if ( !YY_CURRENT_BUFFER ) {
+    yyterminate();
+  }
 }
 
 
