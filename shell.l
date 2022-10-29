@@ -138,15 +138,21 @@ if ( !yyin ) {
 
 ~[^ \n\t]* {
   std::string str = std::string(yytext);
+  std::string home = getenv("HOME");
   if (str.size() == 1) {
-    //home directory
-    //std::string = 
-    //printf("%s", getenv("HOME"));
+    yylval.cpp_string = new std::string(home);
   } else {
-    str = str.substr(1, str.size()-1);
-    printf("%s", getenv(str.c_str()));
-  } 
-}
+
+    if (str[1] == '/') {
+      str = home + str.substr(1, -1);
+    } else {
+      str = std::string("/homes/") + str.substr(1,-1);
+    }
+    yylval.cpp_string = new std::string(str);
+  }
+  return WORD;
+} 
+
 
 \"[^\n\"]*\" {
   std::string str = std::string(yytext);
