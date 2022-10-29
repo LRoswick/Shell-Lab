@@ -175,25 +175,10 @@ if ( !yyin ) {
 \$\{[^ \n\}]*\} {
 
   std::string str = std::string(yytext);
-  std::size_t index = str.find('$');
-  result = str.substr(0, index);
-  if (str[index + 1] == '{') {
-    
-  }
-  
-
-
-
-
-  
-  if (str.at(2) == '$') {
-
-  }
-
-
-
-
-
+  std::size_t index = str.find('}');
+  str = str.substr(2, index - 2);
+  yylval.cpp_string = new std::string(getenv(str.c_str()));
+  return WORD;
 }
 
 
