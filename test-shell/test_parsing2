@@ -2,6 +2,6 @@
 
 echo -e "\033[1;4;93m\tParsing - Words and Special Characters\033[0m"
 
-input_str=$'ls|grep fil'
+input_str=$'ls | grep fil'
 diff <(../shell <<< "$input_str" 2>&1) <(/bin/sh <<< "$input_str" 2>&1)
 exit $?

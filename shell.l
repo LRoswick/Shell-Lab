@@ -161,7 +161,7 @@ if ( !yyin ) {
   return WORD;
 }
 
-[^ \\\t\n]*(\\[^nt])((\\[^nt])|[^ \\\t\n])* {
+[^ \\\t\n]*(\\[^\n\t])((\\[^\n\t])|[^ \\\t\n])* {
   std::string str = std::string(yytext);
   std::size_t index = str.find('\\');
   while(index!=-1) {
@@ -170,6 +170,30 @@ if ( !yyin ) {
   }
   yylval.cpp_string = new std::string(str);
   return WORD;
+}
+
+\$\{[^ \n\}]*\} {
+
+  std::string str = std::string(yytext);
+  std::size_t index = str.find('$');
+  result = str.substr(0, index);
+  if (str[index + 1] == '{') {
+    
+  }
+  
+
+
+
+
+  
+  if (str.at(2) == '$') {
+
+  }
+
+
+
+
+
 }
 
 

@@ -1032,19 +1032,24 @@ YY_RULE_SETUP
 #line 139 "shell.l"
 {
   std::string str = std::string(yytext);
+  std::string home = getenv("HOME");
   if (str.size() == 1) {
-    //home directory
-    //std::string = 
-    //printf("%s", getenv("HOME"));
+    yylval.cpp_string = new std::string(home);
   } else {
-    str = str.substr(1, str.size()-1);
-    printf("%s", getenv(str.c_str()));
-  } 
-}
+
+    if (str[1] == '/') {
+      str = home + str.substr(1, -1);
+    } else {
+      str = std::string("/homes/") + str.substr(1,-1);
+    }
+    yylval.cpp_string = new std::string(str);
+  }
+  return WORD;
+} 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 151 "shell.l"
+#line 157 "shell.l"
 {
   std::string str = std::string(yytext);
   str = str.substr(1, str.size()-2);
@@ -1055,7 +1060,7 @@ YY_RULE_SETUP
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 158 "shell.l"
+#line 164 "shell.l"
 {
   std::string str = std::string(yytext);
   std::size_t index = str.find('\\');
@@ -1069,7 +1074,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 172 "shell.l"
+#line 178 "shell.l"
 {
   std::string str = std::string(yytext);
   if (str.at(0) == '$') {
@@ -1141,7 +1146,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 242 "shell.l"
+#line 248 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -1150,10 +1155,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 247 "shell.l"
+#line 253 "shell.l"
 ECHO;
 	YY_BREAK
-#line 1157 "lex.yy.cc"
+#line 1162 "lex.yy.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2168,4 +2173,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 247 "shell.l"
+#line 253 "shell.l"
