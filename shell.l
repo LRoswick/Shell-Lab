@@ -180,7 +180,8 @@ $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
     if (str[index + 1] == '{') {
       std::size_t end = str.find('}');
       var = str.substr(index + 2, end - index - 2);
-      var = new std::string(getenv(var.c_str()));  
+      std::string x = new std::string(getenv(var.c_str()));
+      var = x;  
     }
     str = str.substr(0,index) + var + str.substr(index + var.size() + 3, std::string::npos);   
     //str = str.substr(0,index) + str.substr(index+1,std::string::npos);
