@@ -1180,7 +1180,7 @@ YY_RULE_SETUP
       var = x;
       fprintf(stdout, "%s", var.c_str());
     }
-    str = str.substr(0,index) + var + str.substr(index + var.size() + 3, std::string::npos);   
+    str = str.substr(0,index+1) + var + str.substr(index + var.size() + 3, std::string::npos);   
     //str = str.substr(0,index) + str.substr(index+1,std::string::npos);
     index = str.find('$', index+1);
   }

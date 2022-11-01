@@ -186,7 +186,12 @@ $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
       var = x;
       fprintf(stdout, "%s", var.c_str());
     }
-    str = str.substr(0,index+1) + var + str.substr(index + var.size() + 3, std::string::npos);   
+    str2 = str.substr(0,index) + var;
+    if (index + var.size() + 3 < str.size()) { 
+      str2 = str2 + str.substr(index + var.size() + 3, str.size() - index - var.size() - 3));
+    }
+    str = str2;
+   
     //str = str.substr(0,index) + str.substr(index+1,std::string::npos);
     index = str.find('$', index+1);
   }
