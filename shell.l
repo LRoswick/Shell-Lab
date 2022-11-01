@@ -176,17 +176,18 @@ $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
   std::string str = std::string(yytext);
   std::size_t index = str.find('$');
   while(index!=-1) {
+    std::string name = "";
     std::string var = "";
     if (str[index + 1] == '{') {
       std::size_t end = str.find('}');
-      var = str.substr(index + 2, end - index - 2);
-      std::string x = std::string(getenv(var.c_str()));
+      string name = str.substr(index + 2, end - index - 2);
+      std::string x = std::string(getenv(name.c_str()));
       var = x;
     }
 
     std::string str2 = str.substr(0,index) + var;
     if (index + var.size() + 3 < str.size()) { 
-      str2 = str2 + str.substr(index + var.size() + 3, str.size() - index - var.size() - 3);
+      str2 = str2 + str.substr(index + name.size() + 3, str.size() - index - name.size() - 3);
     }
     str = str2;
    
