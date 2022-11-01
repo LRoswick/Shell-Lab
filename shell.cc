@@ -28,9 +28,6 @@
 #include <limits.h>
 
 
-std::vector<int> Shell::_bgPIDs;
-
-
 int yyparse(void);
 
 void Shell::prompt() {
@@ -78,10 +75,16 @@ int main() {
     perror("sigaction");
     exit(2);
   }
-
+  
   std::string s = std::to_string(getpid());
   setenv("$", s.c_str(), 1);
   
+  char buff[100];
+  realpath(argv[0], buff);
+  setenv("SHELL", buff, 1);
+
+
+
   Shell::prompt();
   yyparse();
 

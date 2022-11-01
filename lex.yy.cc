@@ -1180,7 +1180,7 @@ YY_RULE_SETUP
     }
 
     std::string str2 = str.substr(0,index) + var;
-    if (index + var.size() + 3 < str.size()) { 
+    if (index + name.size() + 3 < str.size()) { 
       str2 = str2 + str.substr(index + name.size() + 3, str.size() - index - name.size() - 3);
     }
     str = str2;
