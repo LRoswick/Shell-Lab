@@ -172,12 +172,21 @@ if ( !yyin ) {
   return WORD;
 }
 
-\$\{[^ \n\}]*\} {
-
+$\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
   std::string str = std::string(yytext);
-  std::size_t index = str.find('}');
-  str = str.substr(2, index - 2);
-  yylval.cpp_string = new std::string(getenv(str.c_str()));
+  std::size_t index = str.find('$');
+  while(index!=-1) {
+    std::string var = "";
+    if (str[index + 1] == '{') {
+      std::size_t end = str.find('}');
+      var = str.substr(index + 2, end - index - 2);
+      var = new std::string(getenv(var.c_str()));  
+    }
+    str = str.substr(0,index) + var + str.substr(index + var.size() + 3, std::string::npos);   
+    //str = str.substr(0,index) + str.substr(index+1,std::string::npos);
+    index = str.find('$', index+1);
+  }
+  yylval.cpp_string = new std::string(str);
   return WORD;
 }
 
