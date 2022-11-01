@@ -79,6 +79,8 @@ int main() {
     exit(2);
   }
 
+  std::string s = std::to_string(getpid());
+  setenv("$", s.c_str(), 1);
   
   Shell::prompt();
   yyparse();
