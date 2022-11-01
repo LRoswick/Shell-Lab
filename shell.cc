@@ -60,7 +60,7 @@ extern "C" void disp(int sig) {
 
 
 
-int main() {
+int main(int argc, char **argv) {
   struct sigaction sa;
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
