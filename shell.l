@@ -173,6 +173,7 @@ if ( !yyin ) {
 }
 
 $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
+  printf("hi");
   std::string str = std::string(yytext);
   std::size_t index = str.find('$');
   while(index!=-1) {
@@ -180,8 +181,10 @@ $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
     if (str[index + 1] == '{') {
       std::size_t end = str.find('}');
       var = str.substr(index + 2, end - index - 2);
+      printf("%s", var);
       std::string x = std::string(getenv(var.c_str()));
-      var = x;  
+      var = x;
+      printf("%s", var);  
     }
     str = str.substr(0,index) + var + str.substr(index + var.size() + 3, std::string::npos);   
     //str = str.substr(0,index) + str.substr(index+1,std::string::npos);
