@@ -189,7 +189,7 @@ $\{[^ \}\n]*\}([^ \n]*|$\{[^ \}\n]*\})* {
 
     std::string str2 = str.substr(0,index) + var;
     if (index + var.size() + 3 < str.size()) { 
-      str2 = str2 + str.substr(index + var.size() + 3, str.size() - index - var.size() - 3));
+      str2 = str2 + str.substr(index + var.size() + 3, str.size() - index - var.size() - 3);
     }
     str = str2;
    
