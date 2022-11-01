@@ -1167,7 +1167,6 @@ case 17:
 YY_RULE_SETUP
 #line 175 "shell.l"
 {
-  fprintf(stdout, "hi");
   std::string str = std::string(yytext);
   std::size_t index = str.find('$');
   while(index!=-1) {
@@ -1175,10 +1174,8 @@ YY_RULE_SETUP
     if (str[index + 1] == '{') {
       std::size_t end = str.find('}');
       var = str.substr(index + 2, end - index - 2);
-      fprintf(stdout, "%s", var.c_str());
       std::string x = std::string(getenv(var.c_str()));
       var = x;
-      fprintf(stdout, "%s", var.c_str());
     }
 
     std::string str2 = str.substr(0,index) + var;
@@ -1196,7 +1193,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 206 "shell.l"
+#line 203 "shell.l"
 {
   std::string str = std::string(yytext);
   if (str.at(0) == '$') {
@@ -1268,7 +1265,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 276 "shell.l"
+#line 273 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -1277,10 +1274,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 281 "shell.l"
+#line 278 "shell.l"
 ECHO;
 	YY_BREAK
-#line 1284 "lex.yy.cc"
+#line 1281 "lex.yy.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2295,4 +2292,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 281 "shell.l"
+#line 278 "shell.l"
