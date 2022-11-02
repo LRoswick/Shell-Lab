@@ -25,9 +25,13 @@
 %{
 
 #include <cstring>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "y.tab.hh"
+#include "shell.hh"
+#include <sys/types.h>
 #include <sys/wait.h>
-
 #include <string.h>
 
 extern “C” char * read_line();
