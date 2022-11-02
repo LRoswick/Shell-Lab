@@ -693,7 +693,7 @@ char *yytext_ptr;
 #include <sys/wait.h>
 #include <string.h>
 
-extern “C” char * read_line();
+extern "C" char * read_line();
 
 int mygetc(FILE * f) {
   static char *p;
