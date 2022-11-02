@@ -30,31 +30,31 @@
 
 #include <string.h>
 
-//extern “C” char * read_line();
+extern “C” char * read_line();
 
-//int mygetc(FILE * f) {
-//  static char *p;
-//  char ch;
+int mygetc(FILE * f) {
+  static char *p;
+  char ch;
 
-//     if (!isatty(0)) {
-  // stdin is not a tty. Call real getc
-//    return getc(f);
-//  }
+  if (!isatty(0)) {
+    //stdin is not a tty. Call real getc
+    return getc(f);
+  }
 
   // stdin is a tty. Call our read_line.
-//  if (p==NULL || *p == 0) {
-//    char * s = read_line();
-//    p = s;
-//  }
+  if (p==NULL || *p == 0) {
+    char * s = read_line();
+    p = s;
+  }
 
-//  ch = *p;
-//  p++;
+  ch = *p;
+  p++;
 
-//  return ch;
-//}
+  return ch;
+}
 
-//#undef getc
-//#define getc(f) mygetc(f)
+#undef getc
+#define getc(f) mygetc(f)
 
 
 

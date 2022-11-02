@@ -103,7 +103,8 @@ arg_list:
 arg:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    Command::_currentSimpleCommand->insertArgument( $1 );\
+    expandWildcardsIfNecessary((char *)$1->c_str());
+    //Command::_currentSimpleCommand->insertArgument( $1 );\
   }
   ;
 
@@ -183,7 +184,7 @@ command_list:
 %%
 
 void expandWildcardsIfNecessary(char * arg) {
-
+  
 }
 
 
