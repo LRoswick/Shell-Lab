@@ -101,7 +101,37 @@ char * read_line() {
       read_line_print_usage();
       line_buffer[0]=0;
       break;
+    } else if (ch == 1) {
+      //ctrl A
+      
+      int temp = line_length;
+      for (int i = 0; i < line_length; i++) {
+        ch = 8;
+        write(1,&ch,1);  
+
+
+        //right_side_buffer[right_side_length] = line_buffer[line_length-1];
+        //right_side_length++;
+        //line_length--;
+      }
+
+    else if (ch == 4) {
+      //ctrl D
+    
+
+
+    } else if (ch == 5) {
+      //ctrl E
+
+
     }
+
+
+
+
+
+
+
     else if (ch == 8) {
       // <backspace> was typed. Remove previous character read.
 
