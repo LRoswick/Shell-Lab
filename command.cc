@@ -116,7 +116,7 @@ void Command::execute() {
         Shell::prompt();
         return;
     }
-
+    print();
     const char * cmd = _simpleCommands[0]->_arguments[0]->c_str();
 
     //exit
