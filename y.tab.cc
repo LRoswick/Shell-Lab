@@ -1858,12 +1858,6 @@ close(d);
 
 
 
-  char Prefix[MAXFILENAME];
-  if (prefix[0] == 0) {
-    if (suffix[0] == '/') {suffix += 1; sprintf(Prefix, "%s/", prefix);}
-    else strcpy(Prefix, prefix);
-  }
-
 
 
 

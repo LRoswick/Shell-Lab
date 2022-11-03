@@ -301,7 +301,7 @@ return;
 // Convert component to regular expression
 
 //char * expbuf = compile(...)
-char * dir;
+//char * dir;
 // If prefix is empty then list current directory
 
 
@@ -311,17 +311,17 @@ char * dir;
 //if (d==NULL) return;
 
 // Now we need to check what entries match
-while ((ent = readdir(d))!= NULL) {
+//while ((ent = readdir(d))!= NULL) {
 // Check if name matches
-if (advance(ent->d_name, expbuf) ) {
+//if (advance(ent->d_name, expbuf) ) {
 // Entry matches. Add name of entry
 // that matches to the prefix and
 // call expandWildcard(..) recursively
-sprintf(newPrefix,"%s/%s", prefix, ent->d_name);
-expandWildcard(newPrefix,suffix);
-}
-}
-close(d);
+//sprintf(newPrefix,"%s/%s", prefix, ent->d_name);
+//expandWildcard(newPrefix,suffix);
+//}
+//}
+//close(d);
 
 
 
