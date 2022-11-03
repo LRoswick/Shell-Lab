@@ -317,33 +317,7 @@ void expandWildcardsIfNecessary(char * arg) {
 //}
 //}
 //close(d);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+//}
 
 
 
