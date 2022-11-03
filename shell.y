@@ -270,8 +270,8 @@ void expandWildcard(char * prefix, char * suffix) {
 
 // Obtain the next component in the suffix
 // Also advance suffix.
-char * s = strchr(suffix, ‘/’);
-char component[MAXFILENAME];
+//char * s = strchr(suffix, ‘/’);
+//char component[MAXFILENAME];
 
 
 
@@ -279,24 +279,24 @@ char component[MAXFILENAME];
 
 
 
-if (s!=NULL){ // Copy up to the first “/”
+//if (s!=NULL){ // Copy up to the first “/”
 
-  strncpy(component,suffix, s-suffix);
-  suffix = s + 1;
-} else { // Last part of path. Copy whole thing.
+  //strncpy(component,suffix, s-suffix);
+  //suffix = s + 1;
+//} else { // Last part of path. Copy whole thing.
 
-  strcpy(component, suffix);
-  suffix = suffix + strlen(suffix);
-}
+  //strcpy(component, suffix);
+  //suffix = suffix + strlen(suffix);
+//}
 
 // Now we need to expand the component
-char newPrefix[MAXFILENAME];
-if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
+//char newPrefix[MAXFILENAME];
+//if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
 // component does not have wildcards
-sprintf(newPrefix,"%s/%s", prefix, component);
-expandWildcard(newPrefix, suffix);
-return;
-}
+//sprintf(newPrefix,"%s/%s", prefix, component);
+//expandWildcard(newPrefix, suffix);
+//return;
+//}
 // Component has wildcards
 // Convert component to regular expression
 
