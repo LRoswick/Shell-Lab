@@ -104,7 +104,22 @@ arg:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary((char *)$1->c_str());
-    Command::_currentSimpleCommand->insertArgument( $1 );\
+    //Command::_currentSimpleCommand->insertArgument( $1 );
+    if( strchr($1,'*') != NULL || strchr($1,'?') != NULL){
+      array = (char **)malloc(sizeof(char*)* 69);;
+      num  = 0;	
+      expandWildcard(NULL, strdup($1));
+      qsort(array, num, sizeof(char*), compare_function);
+      for(int i = 0; i < num; i++){
+        Command::_currentSimpleCommand->insertArgument(strdup(array[i]));
+      }
+      free(array);
+    } else {
+      Command::_currentSimpleCommand->insertArgument(strdup($1));
+    }
+
+
+
   }
   ;
 
@@ -231,6 +246,96 @@ void expandWildcardsIfNecessary(char * arg) {
   //}
 //}
 //closedir(dir);
+
+
+
+
+
+}
+
+void expandWildcard(char * prefix, char * suffix) {
+  if (suffix[0] == 0) {
+    _sortArgument.push_back(strdup(prefix));
+    return;
+  }
+
+  
+
+
+
+
+
+
+
+// Obtain the next component in the suffix
+// Also advance suffix.
+char * s = strchr(suffix, ‘/’);
+char component[MAXFILENAME];
+if (s!=NULL){ // Copy up to the first “/”
+strncpy(component,suffix, s-suffix);
+suffix = s + 1;
+}
+else { // Last part of path. Copy whole thing.
+strcpy(component, suffix);
+suffix = suffix + strlen(suffix);
+}
+
+// Now we need to expand the component
+char newPrefix[MAXFILENAME];
+if ( component does not have ‘*’ or ‘?’) {
+// component does not have wildcards
+sprintf(newPrefix,”%s/%s”, prefix, component);
+expandWildcard(newPrefix, suffix);
+return;
+}
+// Component has wildcards
+// Convert component to regular expression
+char * expbuf = compile(...)
+char * dir;
+// If prefix is empty then list current directory
+if (prefix is empty) dir =“.”; else dir=prefix;
+DIR * d=opendir(dir);
+if (d==NULL) return;
+
+// Now we need to check what entries match
+while ((ent = readdir(d))!= NULL) {
+// Check if name matches
+if (advance(ent->d_name, expbuf) ) {
+// Entry matches. Add name of entry
+// that matches to the prefix and
+// call expandWildcard(..) recursively
+sprintf(newPrefix,”%s/%s”, prefix, ent->d_name);
+expandWildcard(newPrefix,suffix);
+}
+}
+close(d);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  char Prefix[MAXFILENAME];
+  if (prefix[0] == 0) {
+    if (suffix[0] == '/') {suffix += 1; sprintf(Prefix, "%s/", prefix);}
+    else strcpy(Prefix, prefix);
+  }
+
+
+
 
 
 
