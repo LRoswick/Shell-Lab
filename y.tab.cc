@@ -547,8 +547,8 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    62,    62,    76,    80,    81,    85,    86,    90,    97,
-      98,   104,   114,   115,   121,   129,   133,   138,   144,   149,
-     153,   159,   160,   164,   167
+      98,   104,   129,   130,   136,   144,   148,   153,   159,   164,
+     168,   174,   175,   179,   182
 };
 #endif
 
@@ -1384,88 +1384,103 @@ yyreduce:
        {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary((char *)$1->c_str());
-    Command::_currentSimpleCommand->insertArgument( (yyvsp[0].cpp_string) );\
+    //Command::_currentSimpleCommand->insertArgument( $1 );
+    if( strchr((yyvsp[0].cpp_string),'*') != NULL || strchr((yyvsp[0].cpp_string),'?') != NULL){
+      array = (char **)malloc(sizeof(char*)* 69);;
+      num  = 0;	
+      expandWildcard(NULL, strdup((yyvsp[0].cpp_string)));
+      qsort(array, num, sizeof(char*), compare_function);
+      for(int i = 0; i < num; i++){
+        Command::_currentSimpleCommand->insertArgument(strdup(array[i]));
+      }
+      free(array);
+    } else {
+      Command::_currentSimpleCommand->insertArgument(strdup((yyvsp[0].cpp_string)));
+    }
+
+
+
   }
-#line 1390 "y.tab.cc"
+#line 1405 "y.tab.cc"
     break;
 
   case 14:
-#line 121 "shell.y"
+#line 136 "shell.y"
        {
     //printf("   Yacc: insert command \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand = new SimpleCommand();
     Command::_currentSimpleCommand->insertArgument( (yyvsp[0].cpp_string) );
   }
-#line 1400 "y.tab.cc"
+#line 1415 "y.tab.cc"
     break;
 
   case 15:
-#line 129 "shell.y"
+#line 144 "shell.y"
              {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
   }
-#line 1409 "y.tab.cc"
+#line 1424 "y.tab.cc"
     break;
 
   case 16:
-#line 133 "shell.y"
+#line 148 "shell.y"
                     {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._append = true;
   }
-#line 1419 "y.tab.cc"
+#line 1434 "y.tab.cc"
     break;
 
   case 17:
-#line 138 "shell.y"
+#line 153 "shell.y"
                        {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._append = true;
   }
-#line 1430 "y.tab.cc"
+#line 1445 "y.tab.cc"
     break;
 
   case 18:
-#line 144 "shell.y"
+#line 159 "shell.y"
                   {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1440 "y.tab.cc"
+#line 1455 "y.tab.cc"
     break;
 
   case 19:
-#line 149 "shell.y"
+#line 164 "shell.y"
               {
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
     Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
   }
-#line 1449 "y.tab.cc"
+#line 1464 "y.tab.cc"
     break;
 
   case 20:
-#line 153 "shell.y"
+#line 168 "shell.y"
                   {
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1457 "y.tab.cc"
+#line 1472 "y.tab.cc"
     break;
 
   case 23:
-#line 164 "shell.y"
+#line 179 "shell.y"
       {
     Shell::_currentCommand._background = true;
   }
-#line 1465 "y.tab.cc"
+#line 1480 "y.tab.cc"
     break;
 
 
-#line 1469 "y.tab.cc"
+#line 1484 "y.tab.cc"
 
       default: break;
     }
@@ -1697,7 +1712,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 184 "shell.y"
+#line 199 "shell.y"
 
 
 void expandWildcardsIfNecessary(char * arg) {
@@ -1748,6 +1763,96 @@ void expandWildcardsIfNecessary(char * arg) {
   //}
 //}
 //closedir(dir);
+
+
+
+
+
+}
+
+void expandWildcard(char * prefix, char * suffix) {
+  if (suffix[0] == 0) {
+    _sortArgument.push_back(strdup(prefix));
+    return;
+  }
+
+  
+
+
+
+
+
+
+
+// Obtain the next component in the suffix
+// Also advance suffix.
+char * s = strchr(suffix, ‘/’);
+char component[MAXFILENAME];
+if (s!=NULL){ // Copy up to the first “/”
+strncpy(component,suffix, s-suffix);
+suffix = s + 1;
+}
+else { // Last part of path. Copy whole thing.
+strcpy(component, suffix);
+suffix = suffix + strlen(suffix);
+}
+
+// Now we need to expand the component
+char newPrefix[MAXFILENAME];
+if ( component does not have ‘*’ or ‘?’) {
+// component does not have wildcards
+sprintf(newPrefix,”%s/%s”, prefix, component);
+expandWildcard(newPrefix, suffix);
+return;
+}
+// Component has wildcards
+// Convert component to regular expression
+char * expbuf = compile(...)
+char * dir;
+// If prefix is empty then list current directory
+if (prefix is empty) dir =“.”; else dir=prefix;
+DIR * d=opendir(dir);
+if (d==NULL) return;
+
+// Now we need to check what entries match
+while ((ent = readdir(d))!= NULL) {
+// Check if name matches
+if (advance(ent->d_name, expbuf) ) {
+// Entry matches. Add name of entry
+// that matches to the prefix and
+// call expandWildcard(..) recursively
+sprintf(newPrefix,”%s/%s”, prefix, ent->d_name);
+expandWildcard(newPrefix,suffix);
+}
+}
+close(d);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  char Prefix[MAXFILENAME];
+  if (prefix[0] == 0) {
+    if (suffix[0] == '/') {suffix += 1; sprintf(Prefix, "%s/", prefix);}
+    else strcpy(Prefix, prefix);
+  }
+
+
+
 
 
 
