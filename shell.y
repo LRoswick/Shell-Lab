@@ -201,7 +201,7 @@ command_list:
 
 void expandWildcardsIfNecessary(char * arg) {
     
-  if (strchr(arg_c,'?')==NULL & strchr(arg_c,'*')==NULL) {
+  if (strchr(arg,'?')==NULL & strchr(arg,'*')==NULL) {
     Command::_currentSimpleCommand->insertArgument(arg);
     return;
 
