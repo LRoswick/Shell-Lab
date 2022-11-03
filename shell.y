@@ -50,6 +50,18 @@
 #include <cstdio>
 #include "shell.hh"
 #include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>  
+#include <sys/wait.h>   
+#include <string.h>
+#include <signal.h>
+#include <fcntl.h>      
+#include <unistd.h>     
+#include <pwd.h>
+
 void yyerror(const char * s);
 int yylex();
 char** array;
