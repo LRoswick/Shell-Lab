@@ -28,6 +28,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <terminos.h> 
 
 
 Command::Command() {
@@ -121,6 +122,18 @@ void Command::execute() {
     //exit
     if (strcmp(cmd, "exit") == 0) {
       printf("Good Bye!!\n");
+      struct termios tty_attr;
+
+      tcgetattr(0,&tty_attr);
+
+      /* Set raw mode. */
+      tty_attr.c_lflag |= ICANON;
+      tty_attr.c_lflag |= ECHO;
+
+      tty_attr.c_cc[VTIME] = 0;
+      tty_attr.c_cc[VMIN] = 1;
+
+      tcsetattr(0,TCSANOW,&tty_attr);
       exit(1);
     }
 
