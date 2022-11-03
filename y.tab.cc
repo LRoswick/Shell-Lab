@@ -1788,18 +1788,26 @@ void expandWildcard(char * prefix, char * suffix) {
 // Also advance suffix.
 char * s = strchr(suffix, ‘/’);
 char component[MAXFILENAME];
+
+
+
+
+
+
+
 if (s!=NULL){ // Copy up to the first “/”
-strncpy(component,suffix, s-suffix);
-suffix = s + 1;
-}
-else { // Last part of path. Copy whole thing.
-strcpy(component, suffix);
-suffix = suffix + strlen(suffix);
+
+  strncpy(component,suffix, s-suffix);
+  suffix = s + 1;
+} else { // Last part of path. Copy whole thing.
+
+  strcpy(component, suffix);
+  suffix = suffix + strlen(suffix);
 }
 
 // Now we need to expand the component
 char newPrefix[MAXFILENAME];
-if ( component does not have ‘*’ or ‘?’) {
+if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
 // component does not have wildcards
 sprintf(newPrefix,”%s/%s”, prefix, component);
 expandWildcard(newPrefix, suffix);
@@ -1807,12 +1815,16 @@ return;
 }
 // Component has wildcards
 // Convert component to regular expression
-char * expbuf = compile(...)
+
+//char * expbuf = compile(...)
 char * dir;
 // If prefix is empty then list current directory
-if (prefix is empty) dir =“.”; else dir=prefix;
-DIR * d=opendir(dir);
-if (d==NULL) return;
+
+
+
+//if (prefix is empty) dir =“.”; else dir=prefix;
+//DIR * d=opendir(dir);
+//if (d==NULL) return;
 
 // Now we need to check what entries match
 while ((ent = readdir(d))!= NULL) {

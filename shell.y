@@ -52,7 +52,8 @@
 #include <cstring>
 void yyerror(const char * s);
 int yylex();
-
+char** array;
+int arrayCounter;
 %}
 
 %%
@@ -292,7 +293,7 @@ if (s!=NULL){ // Copy up to the first “/”
 char newPrefix[MAXFILENAME];
 if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
 // component does not have wildcards
-sprintf(newPrefix,”%s/%s”, prefix, component);
+sprintf(newPrefix,"%s/%s", prefix, component);
 expandWildcard(newPrefix, suffix);
 return;
 }
@@ -316,7 +317,7 @@ if (advance(ent->d_name, expbuf) ) {
 // Entry matches. Add name of entry
 // that matches to the prefix and
 // call expandWildcard(..) recursively
-sprintf(newPrefix,”%s/%s”, prefix, ent->d_name);
+sprintf(newPrefix,"%s/%s", prefix, ent->d_name);
 expandWildcard(newPrefix,suffix);
 }
 }
