@@ -179,7 +179,7 @@ int yyparse (void);
 //#define yylex yylex
 #include <cstdio>
 #include "shell.hh"
-
+#include <cstring>
 void yyerror(const char * s);
 int yylex();
 

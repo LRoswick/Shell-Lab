@@ -185,7 +185,11 @@ command_list:
 
 void expandWildcardsIfNecessary(char * arg) {
     
+  if (strchr(arg_c,'?')==NULL & strchr(arg_c,'*')==NULL) {
+    Command::_currentSimpleCommand->insertArgument(arg);
+    return;
 
+  }
 
   char * reg = (char*)malloc(2*strlen(arg)+10);
   char * a = arg;
