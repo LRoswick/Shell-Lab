@@ -193,7 +193,7 @@ void expandWildcardsIfNecessary(char * arg) {
   *r = '^'; r++; // match beginning of line
   while (*a) {
   if (*a == '*') { *r='.'; r++; *r='*'; r++; }
-  else if (*a == '?') { *r='.' r++;}
+  else if (*a == '?') { *r='.'; r++;}
   else if (*a == '.') { *r='\\'; r++; *r='.'; r++;}
   else { *r=*a; r++;}
   a++;
