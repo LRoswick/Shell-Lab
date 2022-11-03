@@ -1718,11 +1718,11 @@ yyreturn:
 
 void expandWildcardsIfNecessary(char * arg) {
     
-  if (strchr(arg,'?')==NULL & strchr(arg,'*')==NULL) {
-    Command::_currentSimpleCommand->insertArgument(arg);
-    return;
+  //if (strchr(arg,'?')==NULL & strchr(arg,'*')==NULL) {
+    //Command::_currentSimpleCommand->insertArgument(arg);
+    //return;
 
-  }
+  //}
 
   char * reg = (char*)malloc(2*strlen(arg)+10);
   char * a = arg;
