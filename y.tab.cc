@@ -1401,7 +1401,7 @@ yyreduce:
     if( true) { //strchr($1,'*') != NULL || strchr($1,'?') != NULL){
       array = (char **)malloc(sizeof(char*)* 69);;
       //num  = 0;	
-      expandWildcard(NULL, strdup((yyvsp[0].cpp_string)));
+      //expandWildcard(NULL, strdup($1));
       qsort(array, num, sizeof(char*), compare_function);
       for(int i = 0; i < num; i++){
         Command::_currentSimpleCommand->insertArgument(strdup(array[i]));

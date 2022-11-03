@@ -124,11 +124,11 @@ arg:
       //expandWildcard(NULL, strdup($1));
       qsort(array, num, sizeof(char*), compare_function);
       for(int i = 0; i < num; i++){
-        Command::_currentSimpleCommand->insertArgument(strdup(array[i]));
+        //Command::_currentSimpleCommand->insertArgument(strdup(array[i]));
       }
       free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument(strdup($1));
+      //Command::_currentSimpleCommand->insertArgument(strdup($1));
     }
 
 
