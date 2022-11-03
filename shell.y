@@ -190,7 +190,7 @@ void expandWildcardsIfNecessary(char * arg) {
   char * reg = (char*)malloc(2*strlen(arg)+10);
   char * a = arg;
   char * r = reg;
-  *r = ‘^’; r++; // match beginning of line
+  *r = '^'; r++; // match beginning of line
   while (*a) {
   if (*a == '*') { *r='.'; r++; *r='*'; r++; }
   else if (*a == '?') { *r='.' r++;}

@@ -1709,13 +1709,13 @@ void expandWildcardsIfNecessary(char * arg) {
   char * r = reg;
   *r = ‘^’; r++; // match beginning of line
   while (*a) {
-  if (*a == ‘*’) { *r=‘.’; r++; *r=‘*’; r++; }
-  else if (*a == ‘?’) { *r=‘.’ r++;}
-  else if (*a == ‘.’) { *r=‘\\’; r++; *r=‘.’; r++;}
+  if (*a == '*') { *r='.'; r++; *r='*'; r++; }
+  else if (*a == '?') { *r='.' r++;}
+  else if (*a == '.') { *r='\\'; r++; *r='.'; r++;}
   else { *r=*a; r++;}
   a++;
   }
-  *r=‘$’; r++; *r=0;// match end of line and add null char
+  *r='$'; r++; *r=0;// match end of line and add null char
   
 
   // 2. compile regular expression. See lab3-src/regular.cc
