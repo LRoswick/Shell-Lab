@@ -254,11 +254,6 @@ void expandWildcardsIfNecessary(char * arg) {
 
 }
 
-void expandWildcard(char * prefix, char * suffix) {
-  if (suffix[0] == 0) {
-    _sortArgument.push_back(strdup(prefix));
-    return;
-  }
 
   
 
