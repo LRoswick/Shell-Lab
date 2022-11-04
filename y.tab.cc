@@ -1736,7 +1736,7 @@ yyreturn:
 
 
 
-bool cmpfunction (char * name1, char * name2) { 
+bool cmp_func (char * name1, char * name2) { 
   return strcmp(name1,name2)<0; 
 }
 
