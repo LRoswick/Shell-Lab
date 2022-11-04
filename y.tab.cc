@@ -1801,6 +1801,9 @@ void expandWildcard(char * prefix, char * suffix){
   *r='$'; r++; *r='\0';
 
   regex_t tmp;
+  int check = regcomp(&tmp, exp, 0);
+
+  
   if (check > 0) {
     perror("compile");
     return;
@@ -1822,11 +1825,6 @@ void expandWildcard(char * prefix, char * suffix){
   }	
   struct dirent * ent;
 
-
-
-
-
-  int check = regcomp(&tmp, exp, 0);
   while((ent = readdir(dir)) != NULL) {
     //printf("%s\n", ent->d_name);
     if(regexec(&tmp,ent->d_name,0,NULL,0) == 0) {

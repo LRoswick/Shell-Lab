@@ -65,6 +65,19 @@ int main(int argc, char **argv) {
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
   sa.sa_flags = SA_RESTART;
+  
+
+  //.shellrc 
+  std::string s = ".shellrc";
+  FILE * in = fopen(s.c_str(), "r");
+  if (in) {
+    yypush_buffer_state(yy_create_buffer(in, YY_BUF_SIZE));
+    Shell::_srcCmd = true;
+    yyparse();
+    yypop_buffer_state();
+    fclose(in);
+    Shell::_srcCmd = false;
+  }
 
   if(sigaction(SIGINT, &sa, NULL)){
     perror("sigaction");
@@ -94,4 +107,3 @@ int main(int argc, char **argv) {
 }
 
 Command Shell::_currentCommand;
-//std::vector<int> Shell::_bgPIDs;
