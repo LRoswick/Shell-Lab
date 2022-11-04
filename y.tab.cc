@@ -1739,7 +1739,7 @@ bool cmpfunction (char * name1, char * name2) {
 
 
 
-expandWildcard(char * prefix, char * suffix){
+void expandWildcard(char * prefix, char * suffix){
   if (suffix[0] == 0) {
     array.push_back(strdup(prefix));    
     return;

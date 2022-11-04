@@ -68,9 +68,12 @@ int yylex();
 void expandWildcard(char* prefix, char* suffix);
 bool cmp_func(char * name1, char * name2);
 static std::vector<char *> array = std::vector<char *>();
-//char** array;
 int num;
-int arrayCounter;
+#define MAXFILENAME 10000
+
+
+
+
 %}
 
 %%
