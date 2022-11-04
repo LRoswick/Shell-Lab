@@ -125,7 +125,7 @@ arg:
     if( strchr((char *) $1->c_str(),'*') != NULL || strchr((char *)$1->c_str(),'?') != NULL){
       array = (char **)malloc(sizeof(char*)* 69);;
       int num  = 0;	
-      expandWildcard(NULL, strdup((char*) $1->c_str()));
+      expandWildcard(NULL, (char*) $1->c_str());
       std::sort(array.begin(), array.end(), cmp_func);
       //qsort(array, num, sizeof(char*), );
       for (auto a: array) {
