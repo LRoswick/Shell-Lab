@@ -1403,7 +1403,7 @@ yyreduce:
     //expandWildcardsIfNecessary((char *)$1->c_str());
     //Command::_currentSimpleCommand->insertArgument( $1 );
     if( strchr((char *) (yyvsp[0].cpp_string)->c_str(),'*') != NULL || strchr((char *)(yyvsp[0].cpp_string)->c_str(),'?') != NULL){
-      array = (char **)malloc(sizeof(char*)* 69);;
+      //array = (char **)malloc(sizeof(char*)* 69);;
       int num  = 0;	
       expandWildcard(NULL, (char*) (yyvsp[0].cpp_string)->c_str());
       std::sort(array.begin(), array.end(), cmp_func);

@@ -61,6 +61,7 @@
 #include <fcntl.h>      
 #include <unistd.h>     
 #include <pwd.h>
+#include <algorithm>
 
 void yyerror(const char * s);
 int yylex();
