@@ -127,7 +127,7 @@ arg:
       expandWildcard(NULL, strdup((char*)$1->c_str()));
       //qsort(array, num, sizeof(char*), );
       for(int i = 0; i < num; i++){
-        std::string s = array[i];
+        std::string * s = array[i];
         Command::_currentSimpleCommand->insertArgument(s); //might need to be strdup()
       }
       free(array);
