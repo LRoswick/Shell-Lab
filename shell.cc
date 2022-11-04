@@ -71,11 +71,11 @@ int main(int argc, char **argv) {
   std::string input = ".shellrc";
   FILE * in = fopen(input.c_str(), "r");
   if (in) {
-    yypush_buffer_state(yy_create_buffer(in, YY_BUF_SIZE));
+    //yypush_buffer_state(yy_create_buffer(in, YY_BUF_SIZE));
     //Shell::_srcCmd = true;
-    yyparse();
-    yypop_buffer_state();
-    fclose(in);
+    //yyparse();
+    //yypop_buffer_state();
+    //fclose(in);
     //Shell::_srcCmd = false;
   }
 
