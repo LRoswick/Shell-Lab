@@ -1794,6 +1794,28 @@ void expandWildcard(char * prefix, char * suffix){
   *r='$'; r++; *r='\0';
 
   regex_t tmp;
+
+
+  DIR * dir;
+  if(prefix == NULL){
+    dir = opendir(".\0");
+  } else if(strcmp(prefix, "") == 0){
+    dir = opendir("/\0");
+  } else {
+    dir = opendir(prefix);	
+  }
+
+
+
+  //if(dir == NULL){
+    //return;
+  //}	
+  struct dirent * ent;
+
+
+
+
+
   int check = regcomp(&tmp, exp, 0);
   while((ent = readdir(dir)) != NULL){
     printf("%s\n", ent->d_name);
