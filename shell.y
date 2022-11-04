@@ -118,7 +118,7 @@ arg:
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary((char *)$1->c_str());
     //Command::_currentSimpleCommand->insertArgument( $1 );
-    if( true) { //strchr($1,'*') != NULL || strchr($1,'?') != NULL){
+    if( strchr($1,'*') != NULL || strchr($1,'?') != NULL){
       array = (char **)malloc(sizeof(char*)* 69);;
       int num  = 0;	
       //expandWildcard(NULL, strdup($1));
