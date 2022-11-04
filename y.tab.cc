@@ -1776,8 +1776,13 @@ void expandWildcard(char * prefix, char * suffix){
       sprintf(newPrefix, "%s", component);
     } else {
       sprintf(newPrefix,"%s/%s",prefix,component);
-    }  
-    expandWildcard(newPrefix,suffix);
+    } 
+    if (component[0] == '\0') {
+      char * s = (char*)"";
+      expandWildcard(s,suffix);	
+    } else {
+      expandWildcard(newPrefix,suffix);
+    }
     return;
   }
 
@@ -1796,12 +1801,15 @@ void expandWildcard(char * prefix, char * suffix){
   *r='$'; r++; *r='\0';
 
   regex_t tmp;
-
+  if (check > 0) {
+    perror("compile");
+    return;
+  }
 
   DIR * dir;
-  if(prefix == NULL){
+  if (prefix == NULL) {
     dir = opendir(".\0");
-  } else if(strcmp(prefix, "") == 0){
+  } else if (strcmp(prefix, "") == 0) {
     dir = opendir("/\0");
   } else {
     dir = opendir(prefix);	
@@ -1809,7 +1817,7 @@ void expandWildcard(char * prefix, char * suffix){
 
 
 
-  if(dir == NULL){
+  if (dir == NULL) {
     return;
   }	
   struct dirent * ent;
@@ -1819,11 +1827,11 @@ void expandWildcard(char * prefix, char * suffix){
 
 
   int check = regcomp(&tmp, exp, 0);
-  while((ent = readdir(dir)) != NULL){
-    printf("%s\n", ent->d_name);
-    if(regexec(&tmp,ent->d_name,0,NULL,0) == 0){
-      printf("%s\n",ent->d_name);
-      printf("sus\n");
+  while((ent = readdir(dir)) != NULL) {
+    //printf("%s\n", ent->d_name);
+    if(regexec(&tmp,ent->d_name,0,NULL,0) == 0) {
+      //printf("%s\n",ent->d_name);
+      //printf("sus\n");
       if(ent->d_name[0] == '.'){
         if(component[0] == '.'){
 
@@ -1831,9 +1839,9 @@ void expandWildcard(char * prefix, char * suffix){
 
 	  if(prefix == NULL){	
 	    sprintf(newPrefix, "%s", ent->d_name);
-	    } else {
-	      sprintf(newPrefix, "%s/%s", prefix, ent->d_name);
-	    }
+	  } else {
+	    sprintf(newPrefix, "%s/%s", prefix, ent->d_name);
+	  }
 
 
 	  expandWildcard(newPrefix,suffix);
