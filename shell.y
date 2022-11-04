@@ -250,9 +250,6 @@ void expandWildcard(char * prefix, char * suffix){
     suffix = suffix + strlen(suffix);
   }
 
-}
-
-
 // Now we need to expand the component
   char newPrefix[MAXFILENAME];
   if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
@@ -313,7 +310,7 @@ void expandWildcard(char * prefix, char * suffix){
 //}
 
 
-
+}
 
 void
 yyerror(const char * s)

@@ -1771,8 +1771,33 @@ void expandWildcard(char * prefix, char * suffix){
 
 
 // Now we need to expand the component
-//char newPrefix[MAXFILENAME];
-//if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
+  char newPrefix[MAXFILENAME];
+  if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
+    if(prefix == NULL && component[0] != '\0'){
+      sprintf(newPrefix, "%s", component);
+    } else {
+      sprintf(newPrefix,"%s/%s",prefix,component);
+    }  
+    expandWildcard(newPrefix,suffix);
+    return;
+  }
+
+  char * exp = (char*)malloc(sizeof(char) * (2*(strlen(component)+10)));
+  char * a = component;
+  char * r = exp;
+	
+  *r = '^'; r++;
+  while(*a != '\0'){
+    if (*a == '*') { *r = '.'; r++; *r = '*'; r++;} 
+    else if (*a == '?') { *r = '.'; r++;}
+    else if (*a == '.') { *r='\\'; r++; *r='.'; r++;} 
+    else { *r=*a; r++;}
+    a++;
+  }
+  *r='$'; r++; *r='\0';
+
+
+
 // component does not have wildcards
 //sprintf(newPrefix,"%s/%s", prefix, component);
 //expandWildcard(newPrefix, suffix);
@@ -1784,7 +1809,6 @@ void expandWildcard(char * prefix, char * suffix){
 //char * expbuf = compile(...)
 //char * dir;
 // If prefix is empty then list current directory
-
 
 
 //if (prefix is empty) dir =“.”; else dir=prefix;
