@@ -1411,7 +1411,7 @@ yyreduce:
       }
       free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument(strdup((yyvsp[0].cpp_string)));
+      Command::_currentSimpleCommand->insertArgument((yyvsp[0].cpp_string));
     }
 
 
