@@ -184,12 +184,17 @@ char * read_line() {
 	  ch = 8;
 	  write(1,&ch,1);
 	}	
-
+        
 	// Copy line from history
 	strcpy(line_buffer, history[history_index]);
 	line_length = strlen(line_buffer);
-	history_index=(history_index+1)%history_length;
+        if (ch2 == 65) {
+	  history_index=(history_index+1)%history_length;
+        } else {
 
+
+
+	}
 	// echo line
 	write(1, line_buffer, line_length);
       }
