@@ -1848,7 +1848,7 @@ void expandWildcard(char * prefix, char * suffix){
 	}
       } else {
         if(component[0] != '.'){
-	printf("sus\n");
+	//printf("sus\n");
           if(prefix == NULL){
 	    sprintf(newPrefix, "%s", ent->d_name);
 	  } else {
