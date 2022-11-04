@@ -65,8 +65,9 @@
 void yyerror(const char * s);
 int yylex();
 void expandWildcard(char* prefix, char* suffix);
-int cmp_func(const void *name1, const void *name2);
-char** array;
+bool cmp_func(char * name1, char * name2);
+static std::vector<char *> array = std::vector<char *>();
+//char** array;
 int num;
 int arrayCounter;
 %}
@@ -124,8 +125,17 @@ arg:
     if( strchr((char *) $1->c_str(),'*') != NULL || strchr((char *)$1->c_str(),'?') != NULL){
       array = (char **)malloc(sizeof(char*)* 69);;
       int num  = 0;	
-      expandWildcard(NULL, strdup((char*)$1->c_str()));
+      expandWildcard(NULL, strdup((char*) $1->c_str()));
+      std::sort(_sortArgument.begin(), _sortArgument.end(), cmpfunction);
       //qsort(array, num, sizeof(char*), );
+      for (auto a: array) {
+        std::string * argToInsert = new std::string(a);
+        Command::_currentSimpleCommand->insertArgument(argToInsert);
+      }
+      array.clear();
+
+
+
       for(int i = 0; i < num; i++){
         std::string s(array[i]);
         Command::_currentSimpleCommand->insertArgument(s); //might need to be strdup()
