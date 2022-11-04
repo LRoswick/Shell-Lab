@@ -1767,7 +1767,7 @@ void expandWildcard(char * prefix, char * suffix){
     suffix = suffix + strlen(suffix);
   }
 
-
+}
 
 
 // Now we need to expand the component
