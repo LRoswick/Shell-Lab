@@ -126,27 +126,16 @@ arg:
       array = (char **)malloc(sizeof(char*)* 69);;
       int num  = 0;	
       expandWildcard(NULL, strdup((char*) $1->c_str()));
-      std::sort(_sortArgument.begin(), _sortArgument.end(), cmpfunction);
+      std::sort(array.begin(), array.end(), cmp_func);
       //qsort(array, num, sizeof(char*), );
       for (auto a: array) {
         std::string * argToInsert = new std::string(a);
         Command::_currentSimpleCommand->insertArgument(argToInsert);
       }
       array.clear();
-
-
-
-      for(int i = 0; i < num; i++){
-        std::string s(array[i]);
-        Command::_currentSimpleCommand->insertArgument(s); //might need to be strdup()
-      }
-      free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument($1); //might need to be strdup()
+      Command::_currentSimpleCommand->insertArgument( strdup($1) );
     }
-
-
-
   }
   ;
 
@@ -224,6 +213,12 @@ command_list:
 */
 
 %%
+
+
+bool cmpfunction (char * name1, char * name2) { 
+  return strcmp(i,j)<0; 
+}
+
 
 void expandWildcardsIfNecessary(char * arg) {
     
