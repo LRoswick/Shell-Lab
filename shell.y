@@ -64,7 +64,10 @@
 
 void yyerror(const char * s);
 int yylex();
+void expandWildcard(char* prefix, char* suffix);
+int cmp_func(const void *name1, const void *name2);
 char** array;
+int num;
 int arrayCounter;
 %}
 
@@ -128,7 +131,7 @@ arg:
       }
       free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument(strdup((char*)$1->c_str()));
+      Command::_currentSimpleCommand->insertArgument(strdup($1));
     }
 
 
