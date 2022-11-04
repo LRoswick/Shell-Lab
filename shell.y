@@ -131,7 +131,7 @@ arg:
       }
       free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument(strdup($1));
+      Command::_currentSimpleCommand->insertArgument($1);
     }
 
 
