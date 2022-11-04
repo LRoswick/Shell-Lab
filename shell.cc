@@ -68,15 +68,15 @@ int main(int argc, char **argv) {
   
 
   //.shellrc 
-  std::string s = ".shellrc";
-  FILE * in = fopen(s.c_str(), "r");
+  std::string input = ".shellrc";
+  FILE * in = fopen(input.c_str(), "r");
   if (in) {
     yypush_buffer_state(yy_create_buffer(in, YY_BUF_SIZE));
-    Shell::_srcCmd = true;
+    //Shell::_srcCmd = true;
     yyparse();
     yypop_buffer_state();
     fclose(in);
-    Shell::_srcCmd = false;
+    //Shell::_srcCmd = false;
   }
 
   if(sigaction(SIGINT, &sa, NULL)){
