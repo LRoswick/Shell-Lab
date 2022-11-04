@@ -311,10 +311,6 @@ void expandWildcard(char * prefix, char * suffix){
     } 
   }	
   closedir(dir);
-
-
-
-
 }
 
 void

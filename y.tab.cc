@@ -199,7 +199,7 @@ void expandWildcard(char* prefix, char* suffix);
 bool cmp_func(char * name1, char * name2);
 static std::vector<char *> array = std::vector<char *>();
 int num;
-#define MAXFILENAME 10000
+#define MAXFILENAME 1024
 
 
 
@@ -1767,7 +1767,7 @@ void expandWildcard(char * prefix, char * suffix){
     suffix = suffix + strlen(suffix);
   }
 
-// Now we need to expand the component
+  // Now we need to expand the component
   char newPrefix[MAXFILENAME];
   if (strchr(component,'*') == NULL && strchr(component,'?') == NULL) {
     if(prefix == NULL && component[0] != '\0'){
@@ -1794,37 +1794,42 @@ void expandWildcard(char * prefix, char * suffix){
   *r='$'; r++; *r='\0';
 
   regex_t tmp;
-
-// component does not have wildcards
-//sprintf(newPrefix,"%s/%s", prefix, component);
-//expandWildcard(newPrefix, suffix);
-//return;
-//}
-// Component has wildcards
-// Convert component to regular expression
-
-//char * expbuf = compile(...)
-//char * dir;
-// If prefix is empty then list current directory
+  int check = regcomp(&tmp, exp, 0);
+  while((ent = readdir(dir)) != NULL){
+    printf("%s\n", ent->d_name);
+    if(regexec(&tmp,ent->d_name,0,NULL,0) == 0){
+      printf("%s\n",ent->d_name);
+      printf("sus\n");
+      if(ent->d_name[0] == '.'){
+        if(component[0] == '.'){
 
 
-//if (prefix is empty) dir =“.”; else dir=prefix;
-//DIR * d=opendir(dir);
-//if (d==NULL) return;
 
-// Now we need to check what entries match
-//while ((ent = readdir(d))!= NULL) {
-// Check if name matches
-//if (advance(ent->d_name, expbuf) ) {
-// Entry matches. Add name of entry
-// that matches to the prefix and
-// call expandWildcard(..) recursively
-//sprintf(newPrefix,"%s/%s", prefix, ent->d_name);
-//expandWildcard(newPrefix,suffix);
-//}
-//}
-//close(d);
-//}
+	  if(prefix == NULL){	
+	    sprintf(newPrefix, "%s", ent->d_name);
+	    } else {
+	      sprintf(newPrefix, "%s/%s", prefix, ent->d_name);
+	    }
+
+
+	  expandWildcard(newPrefix,suffix);
+	}
+      } else {
+        if(component[0] != '.'){
+	printf("sus\n");
+          if(prefix == NULL){
+	    sprintf(newPrefix, "%s", ent->d_name);
+	  } else {
+	    sprintf(newPrefix, "%s/%s", prefix, ent->d_name);
+	  }
+          expandWildcard(newPrefix,suffix);
+        }
+      }
+    } 
+  }	
+  closedir(dir);
+
+
 
 
 }
