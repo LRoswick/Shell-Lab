@@ -1739,31 +1739,33 @@ bool cmpfunction (char * name1, char * name2) {
 
 
 
+expandWildcard(char * prefix, char * suffix){
+  if (suffix[0] == 0) {
+    array.push_back(strdup(prefix));    
+    return;
+  }
 
 
 
+  // Obtain the next component in the suffix
+  // Also advance suffix.
+  char * s = strchr(suffix,'/');
+  char component[MAXFILENAME];
+  if(s != NULL){
+    if(s-suffix != 0){
+      strncpy(component, suffix, s-suffix);
+      component[strlen(suffix)-strlen(s)] = '\0';
+    } else {
+      component[0] = '\0';
+    }
+    suffix = s+1;
+  } else {
+    strcpy(component, suffix);
+    suffix = suffix + strlen(suffix);
+  }
 
 
-// Obtain the next component in the suffix
-// Also advance suffix.
-//char * s = strchr(suffix, ‘/’);
-//char component[MAXFILENAME];
 
-
-
-
-
-
-
-//if (s!=NULL){ // Copy up to the first “/”
-
-  //strncpy(component,suffix, s-suffix);
-  //suffix = s + 1;
-//} else { // Last part of path. Copy whole thing.
-
-  //strcpy(component, suffix);
-  //suffix = suffix + strlen(suffix);
-//}
 
 // Now we need to expand the component
 //char newPrefix[MAXFILENAME];
