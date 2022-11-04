@@ -1407,11 +1407,11 @@ yyreduce:
       expandWildcard(NULL, strdup((char*)(yyvsp[0].cpp_string)->c_str()));
       //qsort(array, num, sizeof(char*), );
       for(int i = 0; i < num; i++){
-        //Command::_currentSimpleCommand->insertArgument(strdup(array[i]));
+        Command::_currentSimpleCommand->insertArgument(array[i]); //might need to be strdup()
       }
       free(array);
     } else {
-      Command::_currentSimpleCommand->insertArgument((yyvsp[0].cpp_string));
+      Command::_currentSimpleCommand->insertArgument((yyvsp[0].cpp_string)); //might need to be strdup()
     }
 
 
