@@ -292,9 +292,9 @@ void expandWildcard(char * prefix, char * suffix){
 
 
 
-  //if(dir == NULL){
-    //return;
-  //}	
+  if(dir == NULL){
+    return;
+  }	
   struct dirent * ent;
 
 
