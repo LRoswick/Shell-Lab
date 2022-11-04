@@ -276,7 +276,7 @@ void expandWildcard(char * prefix, char * suffix){
   }
   *r='$'; r++; *r='\0';
 
-
+  regex_t tmp;
 
 // component does not have wildcards
 //sprintf(newPrefix,"%s/%s", prefix, component);
