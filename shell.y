@@ -62,7 +62,7 @@
 #include <unistd.h>     
 #include <pwd.h>
 #include <algorithm>
-
+#include <regex.h>
 void yyerror(const char * s);
 int yylex();
 void expandWildcard(char* prefix, char* suffix);
