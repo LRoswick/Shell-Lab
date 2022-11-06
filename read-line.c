@@ -312,10 +312,12 @@ char * read_line() {
       } else if (ch1==91 && ch2==67) {
         //move right
         if (line_length != 0) {
-          write(1,"\033[1C",5);
-          line_buffer[line_length]=right_side_buffer[right_side_length-1];
-          line_length++;
-          right_side_length--;
+	  if (right_side_length != 0) {	  
+            write(1,"\033[1C",5);
+            line_buffer[line_length]=right_side_buffer[right_side_length-1];
+            line_length++;
+            right_side_length--;
+	  }
         }
 
       }
