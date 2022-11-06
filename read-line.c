@@ -194,7 +194,7 @@ char * read_line() {
 
     } else if (ch == 4) {
       //ctrl D
-      if (line_length != 0) {
+      if (line_length != 0 && right_side_length != 0) {
         for(int i=right_side_length-2; i>=0; i--) {
           char c = right_side_buffer[i];
           write(1,&c,1);
