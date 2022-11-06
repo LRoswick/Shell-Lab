@@ -570,8 +570,8 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    85,    85,    99,   103,   104,   108,   109,   113,   120,
-     121,   127,   151,   152,   158,   166,   170,   176,   184,   194,
-     199,   206,   207,   211,   214
+     121,   127,   151,   152,   158,   166,   170,   176,   184,   193,
+     198,   205,   206,   210,   213
 };
 #endif
 
@@ -1479,40 +1479,39 @@ yyreduce:
     Shell::_currentCommand.redirect(2, (yyvsp[0].cpp_string));
 
 
-
   }
-#line 1485 "y.tab.cc"
+#line 1484 "y.tab.cc"
     break;
 
   case 19:
-#line 194 "shell.y"
+#line 193 "shell.y"
               {
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
     //Shell::_currentCommand._inFile = $2;
     Shell::_currentCommand.redirect(0, (yyvsp[0].cpp_string));
   }
-#line 1495 "y.tab.cc"
+#line 1494 "y.tab.cc"
     break;
 
   case 20:
-#line 199 "shell.y"
+#line 198 "shell.y"
                   {
     //Shell::_currentCommand._errFile = $2;
     Shell::_currentCommand.redirect(2, (yyvsp[0].cpp_string));
   }
-#line 1504 "y.tab.cc"
+#line 1503 "y.tab.cc"
     break;
 
   case 23:
-#line 211 "shell.y"
+#line 210 "shell.y"
       {
     Shell::_currentCommand._background = true;
   }
-#line 1512 "y.tab.cc"
+#line 1511 "y.tab.cc"
     break;
 
 
-#line 1516 "y.tab.cc"
+#line 1515 "y.tab.cc"
 
       default: break;
     }
@@ -1744,7 +1743,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 231 "shell.y"
+#line 230 "shell.y"
 
 
 
