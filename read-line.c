@@ -233,7 +233,7 @@ char * read_line() {
 	// Copy line from history
 	if (!sus) {
 
-          sus = true;
+          //sus = true;
 	  strcpy(line_buffer, history[history_index]);
 	  line_length = strlen(line_buffer);
         }
@@ -241,17 +241,18 @@ char * read_line() {
         if (ch2 == 65) {
 
 	  history_index=(history_index+1)%history_length;
-        } else if (ch2 == 66)  {
+        } else if (ch2 == 66 && sus)  {
 	  
           history_index = (history_index - 1)%history_length;  
           if (history_index < 0) {
             history_index = history_length - 1;
 	  }
 	}
-        strcpy(line_buffer, history[history_index]);
-        line_length = strlen(line_buffer);
-
-
+	if (sus) {	
+          strcpy(line_buffer, history[history_index]);
+          line_length = strlen(line_buffer);
+        }
+        sus = true;
 
 	// echo line
 	write(1, line_buffer, line_length);
