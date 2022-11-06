@@ -230,8 +230,12 @@ char * read_line() {
         if (ch2 == 65) {
 	  history_index=(history_index+1)%history_length;
         } else if (ch2 == 66)  {
+	  
           history_index = (history_index - 1)%history_length;  
+          if (history_index < 0) {
+            history_index = history_length - 1;
 
+	  }
 
 	}
 	// echo line
