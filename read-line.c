@@ -231,7 +231,7 @@ char * read_line() {
 	}	
         
 	// Copy line from history
-	if (!sus) {
+	if (!sus && ch2 == 65) {
 
           //sus = true;
 	  strcpy(line_buffer, history[history_index]);
