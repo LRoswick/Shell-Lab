@@ -80,7 +80,9 @@ char * read_line() {
   tty_raw_mode();
 
   line_length = 0;
+  
 
+  bool sus = false;
   // Read one line until enter is typed
   while (1) {
 
@@ -229,19 +231,28 @@ char * read_line() {
 	}	
         
 	// Copy line from history
-	strcpy(line_buffer, history[history_index]);
-	line_length = strlen(line_buffer);
+	if (!sus) {
+
+          sus = true;
+	  strcpy(line_buffer, history[history_index]);
+	  line_length = strlen(line_buffer);
+        }
+
         if (ch2 == 65) {
+
 	  history_index=(history_index+1)%history_length;
         } else if (ch2 == 66)  {
 	  
           history_index = (history_index - 1)%history_length;  
           if (history_index < 0) {
             history_index = history_length - 1;
-
 	  }
-
 	}
+        strcpy(line_buffer, history[history_index]);
+        line_length = strlen(line_buffer);
+
+
+
 	// echo line
 	write(1, line_buffer, line_length);
       }
