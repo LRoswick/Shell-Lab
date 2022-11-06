@@ -189,7 +189,6 @@ io_modifier:
     Shell::_currentCommand.redirect(2, $2);
 
 
-
   }
   | LESS WORD {
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
