@@ -42,7 +42,7 @@ extern "C" void disp(int sig) {
   if (sig == SIGINT) {
     Shell::_currentCommand.clear();
     printf("\n");
-    Shell::prompt();
+    //Shell::prompt();
   }
   
   if (sig == SIGCHLD) {
