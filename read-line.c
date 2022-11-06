@@ -51,7 +51,7 @@ int history_index = 0;
 
 
 
-int history_length = sizeof(history)/sizeof(char *);
+//int history_length = sizeof(history)/sizeof(char *);
 
 void read_line_print_usage()
 {
@@ -95,7 +95,10 @@ char * read_line() {
     }
     else if (ch==10) {
       // <Enter> was typed. Return line
-       
+      std::string s = line_buffer;
+      
+      history.push_back(s);   
+
       // Print newline
       write(1,&ch,1);
 
