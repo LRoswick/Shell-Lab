@@ -109,6 +109,19 @@ char * read_line() {
       // add char to buffer.
       line_buffer[line_length]=ch;
       line_length++;
+
+      if (right_side_length) {
+        for (int i=right_side_length-1; i>=0; i--) {
+          char c = right_side_buffer[i];
+          write(1,&c,1);
+        }
+      }
+      for (int i=0; i<right_side_length; i++) {
+        char c = 8;
+        write(1,&c,1);
+      }
+
+
     }
     else if (ch==10) {
       sus = false;
@@ -172,8 +185,15 @@ char * read_line() {
 
     } else if (ch == 4) {
       //ctrl D
-    
-
+      if (line_length != 0) {
+        for(int i=right_side_length-2; i>=0; i--) {
+          char c = right_side_buffer[i];
+          write(1,&c,1);
+        }
+        // Write a space to erase the last character read
+        ch = ' ';
+        write(1,&ch,1);
+      } 
 
     } else if (ch == 5) {
       //ctrl E
