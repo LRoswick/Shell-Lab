@@ -125,27 +125,34 @@ char * read_line() {
     }
     else if (ch==10) {
       sus = false;
-      write(1,&ch,1);
-      break;
+      //write(1,&ch,1);
+      //break;
 
       	    
       // <Enter> was typed. Return line
       //std::string s = line_buffer;
       
-      //history.push_back(s);   
+      //history.push_back(s);
+      
+
+
+
+      //add right_side into line_buffer   
       if (right_side_length) {
         for (int i=right_side_length-1; i>=0; i--) {
-          char c = right_side_buffer[i];
+          char s = right_side_buffer[i];
 
-          line_buffer[line_length]=c;
+          line_buffer[line_length]=s;
           line_length++;
         }
       }
-
+      //add mem if necessary 
       if (line_length != 0) {
         if (history[history_index]==NULL) { 
           history[history_index] = (char *)malloc(MAX_BUFFER_LINE);
         }
+
+        
         strcpy(history[history_index], line_buffer);
         history_index_rev = history_index;
         history_index++;
