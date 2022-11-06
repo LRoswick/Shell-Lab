@@ -41,10 +41,10 @@ char line_buffer[MAX_BUFFER_LINE];
 // Yours have to be updated.
 
 //std::vector<string> Shell::history;
-
-int history_index = 0;
-int history_index_rev = 0;
-int history_full = 0;
+int curs = 0;
+//int history_index = 0;
+//int history_index_rev = 0;
+//int history_full = 0;
 //char * history [HISTORY_SIZE];
 char * history [] = {
   "ls -al | grep x", 
