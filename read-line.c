@@ -231,14 +231,27 @@ char * read_line() {
       // Go back one character
       ch = 8;
       write(1,&ch,1);
+      
+      for(int i=right_side_length-1; i>=0; i--) {
+        char c = right_side_buffer[i];
+        write(1,&c,1);
+      }
+
 
       // Write a space to erase the last character read
       ch = ' ';
       write(1,&ch,1);
+      
 
+
+
+      for (int i=0; i<right_side_length+1; i++) {
+        char c = 8;
+        write(1,&c,1);
+      }
       // Go back one character
-      ch = 8;
-      write(1,&ch,1);
+      //ch = 8;
+      //write(1,&ch,1);
 
       // Remove one character from buffer
       line_length--;
