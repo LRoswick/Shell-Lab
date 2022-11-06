@@ -35,6 +35,7 @@ struct Command {
   void clear();
   void print();
   void execute();
+  void redirect(int i, std::string * file);
 
   static SimpleCommand *_currentSimpleCommand;
 };
