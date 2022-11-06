@@ -45,8 +45,8 @@ int curs = 0;
 int history_index = 0;
 int history_index_rev = 0;
 int history_full = 0;
-//char * history [HISTORY_SIZE];
-char * history [] = {
+char * history [HISTORY_SIZE];
+//char * history [] = {
   "ls -al | grep x", 
   "ps -e",
   "cat read-line-example.c",
