@@ -274,22 +274,22 @@ char * read_line() {
 	if (!sus && ch2 == 65) {
 
           //sus = true;
-	  strcpy(line_buffer, history[history_index]);
+	  strcpy(line_buffer, history[index]);
 	  line_length = strlen(line_buffer);
         }
 
         if (ch2 == 65 && sus) {
 
-	  history_index=(history_index+1)%history_length;
+	  index=(index+1)%history_length;
         } else if (ch2 == 66 && sus)  {
 	  
-          history_index = (history_index - 1)%history_length;  
-          if (history_index < 0) {
-            history_index = history_length - 1;
+          index = (index - 1)%history_length;  
+          if (index < 0) {
+            index = history_length - 1;
 	  }
 	}
 	if (sus) {	
-          strcpy(line_buffer, history[history_index]);
+          strcpy(line_buffer, history[index]);
           line_length = strlen(line_buffer);
         }
 	if (ch2 == 65) {
