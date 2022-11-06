@@ -27,7 +27,7 @@
 #include <unistd.h>
 
 #define MAX_BUFFER_LINE 2048
-#define HISTORY_SIZE 16
+#define HISTORY_SIZE 32
 extern void tty_raw_mode(void);
 
 // Buffer where line is stored
@@ -40,11 +40,13 @@ char line_buffer[MAX_BUFFER_LINE];
 // This history does not change. 
 // Yours have to be updated.
 
-std::vector<string> Shell::history;
-
+//std::vector<string> Shell::history;
 
 int history_index = 0;
-//char * history [HISTORY_SIZE];
+int history_index_rev = 0;
+int history_full = 0;
+int history_index = 0;
+char * history [HISTORY_SIZE];
 
 
 
@@ -95,13 +97,38 @@ char * read_line() {
     }
     else if (ch==10) {
       // <Enter> was typed. Return line
-      std::string s = line_buffer;
+      //std::string s = line_buffer;
       
-      history.push_back(s);   
+      //history.push_back(s);   
+      if (right_side_length) {
+        for (int i=right_side_length-1; i>=0; i--) {
+          char c = right_side_buffer[i];
 
-      // Print newline
+          line_buffer[line_length]=c;
+          line_length++;
+        }
+      }
+
+      if (line_length != 0) {
+        if (history[history_index]==NULL) { 
+          history[history_index] = (char *)malloc(MAX_BUFFER_LINE);
+        }
+        strcpy(history[history_index], line_buffer);
+        history_index_rev = history_index;
+        history_index++;
+        if (history_index>=history_length) {
+          history_index = 0;
+          history_full = 1;
+        }
+      }
+
+
+      right_side_length=0;
+
+
+
+
       write(1,&ch,1);
-
       break;
     }
     else if (ch == 31) {
@@ -168,7 +195,7 @@ char * read_line() {
       char ch2;
       read(0, &ch1, 1);
       read(0, &ch2, 1);
-      if (ch1==91 && ch2==65) {
+      if (ch1==91 && (ch2==65 || ch2==66)) {
 	// Up arrow. Print next line in history.
 
 	// Erase old line
@@ -196,8 +223,8 @@ char * read_line() {
 	line_length = strlen(line_buffer);
         if (ch2 == 65) {
 	  history_index=(history_index+1)%history_length;
-        } else {
-
+        } else if (ch2 == 66)  {
+          history_index = (history_index - 1)%history_length;  
 
 
 	}
