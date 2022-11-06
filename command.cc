@@ -89,6 +89,7 @@ void Command::redirect(int i, std::string * file) {
   if (i == 0) {
     if (_inFile) {
       //if infile already exists, exit
+      printf("Ambiguous input redirect.\n");
       exit(1);
     } else {
       _inFile = file;
@@ -98,6 +99,7 @@ void Command::redirect(int i, std::string * file) {
   if (i == 1) {
     if (_outFile) {
       //if outfile already exists, exit
+      printf("Ambiguous output redirect.\n");
       exit(1);
     } else {
       _outFile = file;
@@ -108,6 +110,7 @@ void Command::redirect(int i, std::string * file) {
   if (i == 2) {
     if (_errFile) {
       //if outfile already exists, exit
+      printf("Ambiguous error redirect.\n");
       exit(1);
     } else {
       _errFile = file;

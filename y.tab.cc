@@ -1440,8 +1440,8 @@ yyreduce:
 #line 166 "shell.y"
              {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(1, $2);
+    //Shell::_currentCommand._inFile = $2;
+    Shell::_currentCommand.redirect(1, (yyvsp[0].cpp_string));
   }
 #line 1447 "y.tab.cc"
     break;
@@ -1450,8 +1450,8 @@ yyreduce:
 #line 171 "shell.y"
                     {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(1, $2);
+    //Shell::_currentCommand._outFile = $2;
+    Shell::_currentCommand.redirect(1, (yyvsp[0].cpp_string));
     Shell::_currentCommand._append = true;
   }
 #line 1458 "y.tab.cc"
@@ -1461,10 +1461,10 @@ yyreduce:
 #line 177 "shell.y"
                        {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
-    Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(1, $2);
-    //Shell::_currentCommand.redirect(2, $2);
+    //Shell::_currentCommand._outFile = $2;
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(1, (yyvsp[0].cpp_string));
+    Shell::_currentCommand.redirect(2, (yyvsp[0].cpp_string));
     Shell::_currentCommand._append = true;
   }
 #line 1471 "y.tab.cc"
@@ -1474,10 +1474,10 @@ yyreduce:
 #line 185 "shell.y"
                   {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
-    Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(1, $2);
-    //Shell::_currentCommand.redirect(2, $2);
+    //Shell::_currentCommand._outFile = $2;
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(1, (yyvsp[0].cpp_string));
+    Shell::_currentCommand.redirect(2, (yyvsp[0].cpp_string));
 
 
   }
@@ -1488,8 +1488,8 @@ yyreduce:
 #line 194 "shell.y"
               {
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(0, $2);
+    //Shell::_currentCommand._inFile = $2;
+    Shell::_currentCommand.redirect(0, (yyvsp[0].cpp_string));
   }
 #line 1495 "y.tab.cc"
     break;
@@ -1497,8 +1497,8 @@ yyreduce:
   case 20:
 #line 199 "shell.y"
                   {
-    Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
-    //Shell::_currentCommand.redirect(2, $2);
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(2, (yyvsp[0].cpp_string));
   }
 #line 1504 "y.tab.cc"
     break;
