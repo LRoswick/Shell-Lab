@@ -104,6 +104,7 @@ char * read_line() {
       line_length++;
     }
     else if (ch==10) {
+      sus = false;
       write(1,&ch,1);
       break;
 
@@ -252,8 +253,9 @@ char * read_line() {
           strcpy(line_buffer, history[history_index]);
           line_length = strlen(line_buffer);
         }
-        sus = true;
-
+	if (ch2 == 65) {
+          sus = true;
+        }
 	// echo line
 	write(1, line_buffer, line_length);
       }
