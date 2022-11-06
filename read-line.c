@@ -43,6 +43,7 @@ char line_buffer[MAX_BUFFER_LINE];
 //std::vector<string> Shell::history;
 int curs = 0;
 int history_index = 0;
+int index = 0;
 int history_index_rev = 0;
 int history_full = 0;
 char * history [HISTORY_SIZE];
@@ -201,6 +202,13 @@ char * read_line() {
         ch = ' ';
         write(1,&ch,1);
       } 
+      for (int i=0; i<right_side_length; i++) {
+        char c = 8;
+        write(1,&c,1);
+      }
+      right_side_length--;
+
+
 
     } else if (ch == 5) {
       //ctrl E
