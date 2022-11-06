@@ -27,7 +27,7 @@
 #include <unistd.h>
 
 #define MAX_BUFFER_LINE 2048
-
+#define HISTORY_SIZE 16
 extern void tty_raw_mode(void);
 
 // Buffer where line is stored
@@ -39,15 +39,18 @@ char line_buffer[MAX_BUFFER_LINE];
 // Simple history array
 // This history does not change. 
 // Yours have to be updated.
+
+std::vector<string> Shell::history;
+
+
 int history_index = 0;
-char * history [] = {
-  "ls -al | grep x", 
-  "ps -e",
-  "cat read-line-example.c",
-  "vi hello.c",
-  "make",
-  "ls -al | grep xxx | grep yyy"
-};
+//char * history [HISTORY_SIZE];
+
+
+
+
+
+
 int history_length = sizeof(history)/sizeof(char *);
 
 void read_line_print_usage()
@@ -92,7 +95,7 @@ char * read_line() {
     }
     else if (ch==10) {
       // <Enter> was typed. Return line
-      
+       
       // Print newline
       write(1,&ch,1);
 
@@ -151,8 +154,8 @@ char * read_line() {
 
       // Remove one character from buffer
       line_length--;
-    }
-    else if (ch==27) {
+          
+    } else if (ch==27) {
       // Escape sequence. Read two chars more
       //
       // HINT: Use the program "keyboard-example" to
