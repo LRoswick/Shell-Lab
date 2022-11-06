@@ -102,6 +102,10 @@ char * read_line() {
       line_length++;
     }
     else if (ch==10) {
+      write(1,&ch,1);
+      break;
+
+      	    
       // <Enter> was typed. Return line
       //std::string s = line_buffer;
       
