@@ -165,30 +165,40 @@ command_word:
 io_modifier:
   GREAT WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = $2;
+    Shell::_currentCommand.redirect(1, $2);
   }
   | GREATGREAT WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = $2;
+    //Shell::_currentCommand._outFile = $2;
+    Shell::_currentCommand.redirect(1, $2);
     Shell::_currentCommand._append = true;
   }
   | GREATGREATAND WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = $2;
-    Shell::_currentCommand._errFile = $2;
+    //Shell::_currentCommand._outFile = $2;
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(1, $2);
+    Shell::_currentCommand.redirect(2, $2);
     Shell::_currentCommand._append = true;
   }
   | GREATAND WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._outFile = $2;
-    Shell::_currentCommand._errFile = $2;
+    //Shell::_currentCommand._outFile = $2;
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(1, $2);
+    Shell::_currentCommand.redirect(2, $2);
+
+
+
   }
   | LESS WORD {
    // printf("   Yacc: insert input \"%s\"\n", $2->c_str());
-    Shell::_currentCommand._inFile = $2;
+    //Shell::_currentCommand._inFile = $2;
+    Shell::_currentCommand.redirect(0, $2);
   }
   | TWOGREAT WORD {
-    Shell::_currentCommand._errFile = $2;
+    //Shell::_currentCommand._errFile = $2;
+    Shell::_currentCommand.redirect(2, $2);
   }
   ;
 

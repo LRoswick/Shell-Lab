@@ -83,6 +83,38 @@ void Command::clear() {
     _append = false;
 }
 
+void Command::redirect(int i, std::string * file) {
+
+  //infile 
+  if (i == 0) {
+    if (_inFile) {
+      //if infile already exists, exit
+      exit(1);
+    } else {
+      _inFile = file;
+    }
+  }
+  //outfile
+  if (i == 1) {
+    if (_outFile) {
+      //if outfile already exists, exit
+      exit(1);
+    } else {
+      _outFile = file;
+    }
+  }
+
+  //errfile
+  if (i == 2) {
+    if (_errFile) {
+      //if outfile already exists, exit
+      exit(1);
+    } else {
+      _errFile = file;
+    }
+  }
+}
+
 void Command::print() {
     //return;
     printf("\n\n");
