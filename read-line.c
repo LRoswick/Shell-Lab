@@ -221,6 +221,11 @@ char * read_line() {
       }
 
     } else if (ch == 8 || ch == 127) {
+      
+
+      if (line_length == 0) {
+        continue;
+      }
       // <backspace> was typed. Remove previous character read.
       //printf("sus");
       // Go back one character
