@@ -301,11 +301,15 @@ char * read_line() {
       } else if (ch1==91 && ch2==68) {
         //move left
 	if (line_length != 0) {
-          ch = 8;
-          write(1,&ch,1);
-          right_side_buffer[right_side_length] = line_buffer[line_length-1];
-          right_side_length++;
-          line_length--;
+	  if (line_length != 0 ) {
+
+
+            ch = 8;
+            write(1,&ch,1);
+            right_side_buffer[right_side_length] = line_buffer[line_length-1];
+            right_side_length++;
+            line_length--;
+	  }
 	}
 
 
