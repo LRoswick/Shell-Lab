@@ -238,7 +238,7 @@ char * read_line() {
 	  line_length = strlen(line_buffer);
         }
 
-        if (ch2 == 65) {
+        if (ch2 == 65 && sus) {
 
 	  history_index=(history_index+1)%history_length;
         } else if (ch2 == 66 && sus)  {
