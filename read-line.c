@@ -53,7 +53,7 @@ char * history [HISTORY_SIZE];
 
 
 
-//int history_length = sizeof(history)/sizeof(char *);
+int history_length = sizeof(history)/sizeof(char *);
 
 void read_line_print_usage()
 {
