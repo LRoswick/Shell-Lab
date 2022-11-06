@@ -177,17 +177,14 @@ char * read_line() {
 
     } else if (ch == 5) {
       //ctrl E
+      for (int i=right_side_length-1; i>=0; i--) {
+        write(1,"\033[1C",5);
+        line_buffer[line_length]=right_side_buffer[right_side_length-1];
+        right_side_length--;
+        line_length++;
+      }
 
-
-    }
-
-
-
-
-
-
-
-    else if (ch == 8 || ch == 127) {
+    } else if (ch == 8 || ch == 127) {
       // <backspace> was typed. Remove previous character read.
       printf("sus");
       // Go back one character

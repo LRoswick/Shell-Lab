@@ -1,6 +1,10 @@
 
 #include <string.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 void tty_raw_mode(void);
 
 int main(int argc, char ** argv) 
