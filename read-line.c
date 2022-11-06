@@ -202,13 +202,13 @@ char * read_line() {
         // Write a space to erase the last character read
         ch = ' ';
         write(1,&ch,1);
-      } 
-      for (int i=0; i<right_side_length; i++) {
-        char c = 8;
-        write(1,&c,1);
+       
+        for (int i=0; i<right_side_length; i++) {
+          char c = 8;
+          write(1,&c,1);
+        }
+        right_side_length--;
       }
-      right_side_length--;
-
 
 
     } else if (ch == 5) {
