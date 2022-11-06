@@ -45,8 +45,15 @@ char line_buffer[MAX_BUFFER_LINE];
 int history_index = 0;
 int history_index_rev = 0;
 int history_full = 0;
-char * history [HISTORY_SIZE];
-
+//char * history [HISTORY_SIZE];
+char * history [] = {
+  "ls -al | grep x", 
+  "ps -e",
+  "cat read-line-example.c",
+  "vi hello.c",
+  "make",
+  "ls -al | grep xxx | grep yyy"
+};
 
 
 
