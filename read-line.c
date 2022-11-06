@@ -45,6 +45,7 @@ int curs = 0;
 int history_index = 0;
 int index = 0;
 int history_index_rev = 0;
+int len = 0;
 int history_full = 0;
 char * history [HISTORY_SIZE];
 //char * history [] = {
@@ -221,7 +222,7 @@ char * read_line() {
 
     } else if (ch == 8 || ch == 127) {
       // <backspace> was typed. Remove previous character read.
-      printf("sus");
+      //printf("sus");
       // Go back one character
       ch = 8;
       write(1,&ch,1);
