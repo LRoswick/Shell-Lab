@@ -1,0 +1,25 @@
+Features that work:
+
+Lex and Yacc
+Executing commands
+Ctrl-C
+Zombie Elimination
+Exit
+Quotes
+Escaping
+Builtin Functions
+Subshells
+Environment variable expansion
+Tilde expansion
+Wildcarding (missing 1 test case)
+Edit Mode
+
+
+Features that don't work:
+
+History
+
+
+Extra features:
+
+n/a
